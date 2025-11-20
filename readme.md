@@ -1,0 +1,1 @@
+So far the code base root is simply the code generate from STM's provided code gen for the B-U585I-IOT02A Discovery kit and an intro to QT based GUI. RDJ is a acronym for the 3 main contributers Roger, Derek, and Jazz. 
