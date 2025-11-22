@@ -364,7 +364,7 @@ HAL_StatusTypeDef HAL_USARTEx_DisableFifoMode(USART_HandleTypeDef *husart)
   /* Disable USART */
   __HAL_USART_DISABLE(husart);
 
-  /* Enable FIFO mode */
+  /* Disable FIFO mode */
   CLEAR_BIT(tmpcr1, USART_CR1_FIFOEN);
   husart->FifoMode = USART_FIFOMODE_DISABLE;
 
@@ -484,7 +484,7 @@ HAL_StatusTypeDef HAL_USARTEx_SetRxFifoThreshold(USART_HandleTypeDef *husart, ui
   * @retval HAL status
   */
 HAL_StatusTypeDef HAL_USARTEx_SetConfigAutonomousMode(USART_HandleTypeDef *husart,
-                                                      USART_AutonomousModeConfTypeDef *sConfig)
+                                                      const USART_AutonomousModeConfTypeDef *sConfig)
 {
   uint32_t tmpreg;
 
@@ -539,7 +539,7 @@ HAL_StatusTypeDef HAL_USARTEx_SetConfigAutonomousMode(USART_HandleTypeDef *husar
   * @param sConfig   Autonomous mode structure parameters.
   * @retval HAL status
   */
-HAL_StatusTypeDef HAL_USARTEx_GetConfigAutonomousMode(USART_HandleTypeDef *husart,
+HAL_StatusTypeDef HAL_USARTEx_GetConfigAutonomousMode(const USART_HandleTypeDef *husart,
                                                       USART_AutonomousModeConfTypeDef *sConfig)
 {
   uint32_t tmpreg;

@@ -39,7 +39,7 @@
 /** @defgroup SAIEx_Private_Defines SAIEx Extended Private Defines
   * @{
   */
-#define SAI_PDM_DELAY_MASK          0x77U
+#define SAI_PDM_DELAY_MASK          0x77UL
 #define SAI_PDM_DELAY_OFFSET        8U
 #define SAI_PDM_RIGHT_DELAY_OFFSET  4U
 /**
@@ -73,7 +73,8 @@
   * @param  pdmMicDelay Microphone delays configuration.
   * @retval HAL status
   */
-HAL_StatusTypeDef HAL_SAIEx_ConfigPdmMicDelay(SAI_HandleTypeDef *hsai, SAIEx_PdmMicDelayParamTypeDef *pdmMicDelay)
+HAL_StatusTypeDef HAL_SAIEx_ConfigPdmMicDelay(const SAI_HandleTypeDef *hsai,
+                                              const SAIEx_PdmMicDelayParamTypeDef *pdmMicDelay)
 {
   HAL_StatusTypeDef status = HAL_OK;
   uint32_t offset;

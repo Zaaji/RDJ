@@ -6,7 +6,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2022 STMicroelectronics.
+  * Copyright (c) 2021 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -51,9 +51,9 @@ typedef struct
 {
   uint32_t FifoThresholdByte;         /*!< This is the threshold used by the Peripheral to generate the interrupt
                                            indicating that data are available in reception or free place
-                                           is available in transmission. */
-                                      /*!< For OCTOSPI, this parameter can be a value between 1 and 32 */
-                                      /*!< For HSPI, this parameter can be a value between 1 and 64 */
+                                           is available in transmission.
+                                           For OCTOSPI, this parameter can be a value between 1 and 32.
+                                           For HSPI, this parameter can be a value between 1 and 64 */
   uint32_t MemoryMode;                /*!< It Specifies the memory mode.
                                            This parameter can be a value of @ref XSPI_MemoryMode */
   uint32_t MemoryType;                /*!< It indicates the external device type connected to the XSPI.
@@ -78,6 +78,8 @@ typedef struct
                                            to take in account external signal delays.
                                            This parameter can be a value of @ref XSPI_SampleShifting */
   uint32_t DelayHoldQuarterCycle;     /*!< It allows to hold to 1/4 cycle the data.
+                                           Note that for instances with internal calibration, this field is not used
+                                           during peripheral initialisation.
                                            This parameter can be a value of @ref XSPI_DelayHoldQuarterCycle */
   uint32_t ChipSelectBoundary;        /*!< It enables the transaction boundary feature and
                                            defines the boundary of bytes to release the chip select.
@@ -97,7 +99,7 @@ typedef struct
 /**
   * @brief  HAL XSPI Handle Structure definition
   */
-#if defined (USE_HAL_XSPI_REGISTER_CALLBACKS) && (USE_HAL_XSPI_REGISTER_CALLBACKS == 1U)
+#if defined(USE_HAL_XSPI_REGISTER_CALLBACKS) && (USE_HAL_XSPI_REGISTER_CALLBACKS == 1U)
 typedef struct __XSPI_HandleTypeDef
 #else
 typedef struct
@@ -113,7 +115,7 @@ typedef struct
   __IO uint32_t              State;         /*!< Internal state of the XSPI HAL driver                 */
   __IO uint32_t              ErrorCode;     /*!< Error code in case of HAL driver internal error       */
   uint32_t                   Timeout;       /*!< Timeout used for the XSPI external device access      */
-#if defined (USE_HAL_XSPI_REGISTER_CALLBACKS) && (USE_HAL_XSPI_REGISTER_CALLBACKS == 1U)
+#if defined(USE_HAL_XSPI_REGISTER_CALLBACKS) && (USE_HAL_XSPI_REGISTER_CALLBACKS == 1U)
   void (* ErrorCallback)(struct __XSPI_HandleTypeDef *hxspi);
   void (* AbortCpltCallback)(struct __XSPI_HandleTypeDef *hxspi);
   void (* FifoThresholdCallback)(struct __XSPI_HandleTypeDef *hxspi);
@@ -182,6 +184,7 @@ typedef struct
                                            instruction will be sent only once.
                                            This parameter can be a value of @ref XSPI_SIOOMode */
 } XSPI_RegularCmdTypeDef;
+
 /**
   * @brief  HAL XSPI Hyperbus Configuration Structure definition
   */
@@ -215,6 +218,11 @@ typedef struct
                                            any value between 1 and 4 */
   uint32_t DQSMode;                   /*!< It enables or not the data strobe management.
                                            This parameter can be a value of @ref XSPI_DQSMode */
+#if defined(HSPI1)
+  uint32_t DataMode;                  /*!< It indicates the data mode. Data mode precises number of lines
+                                           for data exchange (except no data).
+                                           This parameter can be a value of @ref XSPI_DataMode */
+#endif /* HSPI1 */
 } XSPI_HyperbusCmdTypeDef;
 
 /**
@@ -233,7 +241,7 @@ typedef struct
                                            This parameter can be a value of @ref XSPI_AutomaticStop */
   uint32_t IntervalTime;              /*!< Specifies the number of clock cycles between two read during automatic
                                            polling phases.
-                                           This parameter can be any value between 0 and 0xFFFF */
+                                           This parameter can be any value between 0 and 0xFFFFU */
 } XSPI_AutoPollingTypeDef;
 
 /**
@@ -245,9 +253,10 @@ typedef struct
                                            This parameter can be a value of @ref XSPI_TimeOutActivation */
   uint32_t TimeoutPeriodClock;        /*!< Specifies the number of clock to wait when the FIFO is full before to
                                            release the chip select.
-                                           This parameter can be any value between 0 and 0xFFFF */
+                                           This parameter can be any value between 0 and 0xFFFFU */
 } XSPI_MemoryMappedTypeDef;
 
+#if defined(OCTOSPIM)
 /**
   * @brief HAL XSPI IO Manager Configuration structure definition
   */
@@ -270,7 +279,8 @@ typedef struct
                                            This parameter can be a value between 1 and 256 */
 } XSPIM_CfgTypeDef;
 
-#if defined (USE_HAL_XSPI_REGISTER_CALLBACKS) && (USE_HAL_XSPI_REGISTER_CALLBACKS == 1U)
+#endif /* OCTOSPIM */
+#if defined(USE_HAL_XSPI_REGISTER_CALLBACKS) && (USE_HAL_XSPI_REGISTER_CALLBACKS == 1U)
 /**
   * @brief  HAL XSPI Callback ID enumeration definition
   */
@@ -296,6 +306,7 @@ typedef enum
 typedef void (*pXSPI_CallbackTypeDef)(XSPI_HandleTypeDef *hxspi);
 
 #endif /* (USE_HAL_XSPI_REGISTER_CALLBACKS) && (USE_HAL_XSPI_REGISTER_CALLBACKS == 1U) */
+#if defined(HSPI_CALFCR_FINE)
 /**
   * @brief  HAL XSPI High-speed interface calibration structure definition
   */
@@ -304,14 +315,15 @@ typedef struct
   uint32_t DelayValueType;            /*!< It indicates which calibration is concerned by the configuration.
                                            This parameter can be a value of @ref XSPI_DelayType */
   uint32_t FineCalibrationUnit;       /*!< It indicates the fine calibration value of the delay.
-                                           This parameter can be a value between 0 and 0x7F */
+                                           This parameter can be a value between 0 and 0x7FU */
   uint32_t CoarseCalibrationUnit;     /*!< It indicates the coarse calibration value of the delay.
-                                           This parameter can be a value between 0 and 0x1F */
+                                           This parameter can be a value between 0 and 0x1FU */
   uint32_t MaxCalibration;            /*!< It indicates that the calibration is outside the range of DLL master.
                                            It applies only when the DelayValueType is HAL_XSPI_CAL_FULL_CYCLE_DELAY.
                                            This parameter can be a value of @ref XSPI_MaxCal */
 } XSPI_HSCalTypeDef;
 
+#endif /* HSPI_CALFCR_FINE */
 /**
   * @}
   */
@@ -350,7 +362,7 @@ typedef struct
 #define HAL_XSPI_ERROR_DMA                   (0x00000004U)  /*!< DMA transfer error               */
 #define HAL_XSPI_ERROR_INVALID_PARAM         (0x00000008U)  /*!< Invalid parameters error         */
 #define HAL_XSPI_ERROR_INVALID_SEQUENCE      (0x00000010U)  /*!< Sequence is incorrect            */
-#if defined (USE_HAL_XSPI_REGISTER_CALLBACKS) && (USE_HAL_XSPI_REGISTER_CALLBACKS == 1U)
+#if defined(USE_HAL_XSPI_REGISTER_CALLBACKS) && (USE_HAL_XSPI_REGISTER_CALLBACKS == 1U)
 #define HAL_XSPI_ERROR_INVALID_CALLBACK      (0x00000020U)  /*!< Invalid callback error           */
 #endif /* (USE_HAL_XSPI_REGISTER_CALLBACKS) && (USE_HAL_XSPI_REGISTER_CALLBACKS == 1U) */
 /**
@@ -384,38 +396,38 @@ typedef struct
 /** @defgroup XSPI_MemorySize XSPI Memory Size
   * @{
   */
-#define HAL_XSPI_SIZE_16B                    (0x00000000U)  /*!<  16 bits  (  2  Byte = 2^( 0+1)) */
-#define HAL_XSPI_SIZE_32B                    (0x00000001U)  /*!<  32 bits  (  4  Byte = 2^( 1+1)) */
-#define HAL_XSPI_SIZE_64B                    (0x00000002U)  /*!<  64 bits  (  8  Byte = 2^( 2+1)) */
-#define HAL_XSPI_SIZE_128B                   (0x00000003U)  /*!< 128 bits  ( 16  Byte = 2^( 3+1)) */
-#define HAL_XSPI_SIZE_256B                   (0x00000004U)  /*!< 256 bits  ( 32  Byte = 2^( 4+1)) */
-#define HAL_XSPI_SIZE_512B                   (0x00000005U)  /*!< 512 bits  ( 64  Byte = 2^( 5+1)) */
-#define HAL_XSPI_SIZE_1KB                    (0x00000006U)  /*!<   1 Kbits (128  Byte = 2^( 6+1)) */
-#define HAL_XSPI_SIZE_2KB                    (0x00000007U)  /*!<   2 Kbits (256  Byte = 2^( 7+1)) */
-#define HAL_XSPI_SIZE_4KB                    (0x00000008U)  /*!<   4 Kbits (512  Byte = 2^( 8+1)) */
-#define HAL_XSPI_SIZE_8KB                    (0x00000009U)  /*!<   8 Kbits (  1 KByte = 2^( 9+1)) */
-#define HAL_XSPI_SIZE_16KB                   (0x0000000AU)  /*!<  16 Kbits (  2 KByte = 2^(10+1)) */
-#define HAL_XSPI_SIZE_32KB                   (0x0000000BU)  /*!<  32 Kbits (  4 KByte = 2^(11+1)) */
-#define HAL_XSPI_SIZE_64KB                   (0x0000000CU)  /*!<  64 Kbits (  8 KByte = 2^(12+1)) */
-#define HAL_XSPI_SIZE_128KB                  (0x0000000DU)  /*!< 128 Kbits ( 16 KByte = 2^(13+1)) */
-#define HAL_XSPI_SIZE_256KB                  (0x0000000EU)  /*!< 256 Kbits ( 32 KByte = 2^(14+1)) */
-#define HAL_XSPI_SIZE_512KB                  (0x0000000FU)  /*!< 512 Kbits ( 64 KByte = 2^(15+1)) */
-#define HAL_XSPI_SIZE_1MB                    (0x00000010U)  /*!<   1 Mbits (128 KByte = 2^(16+1)) */
-#define HAL_XSPI_SIZE_2MB                    (0x00000011U)  /*!<   2 Mbits (256 KByte = 2^(17+1)) */
-#define HAL_XSPI_SIZE_4MB                    (0x00000012U)  /*!<   4 Mbits (512 KByte = 2^(18+1)) */
-#define HAL_XSPI_SIZE_8MB                    (0x00000013U)  /*!<   8 Mbits (  1 MByte = 2^(19+1)) */
-#define HAL_XSPI_SIZE_16MB                   (0x00000014U)  /*!<  16 Mbits (  2 MByte = 2^(20+1)) */
-#define HAL_XSPI_SIZE_32MB                   (0x00000015U)  /*!<  32 Mbits (  4 MByte = 2^(21+1)) */
-#define HAL_XSPI_SIZE_64MB                   (0x00000016U)  /*!<  64 Mbits (  8 MByte = 2^(22+1)) */
-#define HAL_XSPI_SIZE_128MB                  (0x00000017U)  /*!< 128 Mbits ( 16 MByte = 2^(23+1)) */
-#define HAL_XSPI_SIZE_256MB                  (0x00000018U)  /*!< 256 Mbits ( 32 MByte = 2^(24+1)) */
-#define HAL_XSPI_SIZE_512MB                  (0x00000019U)  /*!< 512 Mbits ( 64 MByte = 2^(25+1)) */
-#define HAL_XSPI_SIZE_1GB                    (0x0000001AU)  /*!<   1 Gbits (128 MByte = 2^(26+1)) */
-#define HAL_XSPI_SIZE_2GB                    (0x0000001BU)  /*!<   2 Gbits (256 MByte = 2^(27+1)) */
-#define HAL_XSPI_SIZE_4GB                    (0x0000001CU)  /*!<   4 Gbits (256 MByte = 2^(28+1)) */
-#define HAL_XSPI_SIZE_8GB                    (0x0000001DU)  /*!<   8 Gbits (256 MByte = 2^(29+1)) */
-#define HAL_XSPI_SIZE_16GB                   (0x0000001EU)  /*!<  16 Gbits (256 MByte = 2^(30+1)) */
-#define HAL_XSPI_SIZE_32GB                   (0x0000001FU)  /*!<  32 Gbits (256 MByte = 2^(31+1)) */
+#define HAL_XSPI_SIZE_16B                    (0x00000000U)  /*!<  16 bits  (  2  Bytes = 2^( 0+1)) */
+#define HAL_XSPI_SIZE_32B                    (0x00000001U)  /*!<  32 bits  (  4  Bytes = 2^( 1+1)) */
+#define HAL_XSPI_SIZE_64B                    (0x00000002U)  /*!<  64 bits  (  8  Bytes = 2^( 2+1)) */
+#define HAL_XSPI_SIZE_128B                   (0x00000003U)  /*!< 128 bits  ( 16  Bytes = 2^( 3+1)) */
+#define HAL_XSPI_SIZE_256B                   (0x00000004U)  /*!< 256 bits  ( 32  Bytes = 2^( 4+1)) */
+#define HAL_XSPI_SIZE_512B                   (0x00000005U)  /*!< 512 bits  ( 64  Bytes = 2^( 5+1)) */
+#define HAL_XSPI_SIZE_1KB                    (0x00000006U)  /*!<   1 Kbits (128  Bytes = 2^( 6+1)) */
+#define HAL_XSPI_SIZE_2KB                    (0x00000007U)  /*!<   2 Kbits (256  Bytes = 2^( 7+1)) */
+#define HAL_XSPI_SIZE_4KB                    (0x00000008U)  /*!<   4 Kbits (512  Bytes = 2^( 8+1)) */
+#define HAL_XSPI_SIZE_8KB                    (0x00000009U)  /*!<   8 Kbits (  1 KBytes = 2^( 9+1)) */
+#define HAL_XSPI_SIZE_16KB                   (0x0000000AU)  /*!<  16 Kbits (  2 KBytes = 2^(10+1)) */
+#define HAL_XSPI_SIZE_32KB                   (0x0000000BU)  /*!<  32 Kbits (  4 KBytes = 2^(11+1)) */
+#define HAL_XSPI_SIZE_64KB                   (0x0000000CU)  /*!<  64 Kbits (  8 KBytes = 2^(12+1)) */
+#define HAL_XSPI_SIZE_128KB                  (0x0000000DU)  /*!< 128 Kbits ( 16 KBytes = 2^(13+1)) */
+#define HAL_XSPI_SIZE_256KB                  (0x0000000EU)  /*!< 256 Kbits ( 32 KBytes = 2^(14+1)) */
+#define HAL_XSPI_SIZE_512KB                  (0x0000000FU)  /*!< 512 Kbits ( 64 KBytes = 2^(15+1)) */
+#define HAL_XSPI_SIZE_1MB                    (0x00000010U)  /*!<   1 Mbits (128 KBytes = 2^(16+1)) */
+#define HAL_XSPI_SIZE_2MB                    (0x00000011U)  /*!<   2 Mbits (256 KBytes = 2^(17+1)) */
+#define HAL_XSPI_SIZE_4MB                    (0x00000012U)  /*!<   4 Mbits (512 KBytes = 2^(18+1)) */
+#define HAL_XSPI_SIZE_8MB                    (0x00000013U)  /*!<   8 Mbits (  1 MBytes = 2^(19+1)) */
+#define HAL_XSPI_SIZE_16MB                   (0x00000014U)  /*!<  16 Mbits (  2 MBytes = 2^(20+1)) */
+#define HAL_XSPI_SIZE_32MB                   (0x00000015U)  /*!<  32 Mbits (  4 MBytes = 2^(21+1)) */
+#define HAL_XSPI_SIZE_64MB                   (0x00000016U)  /*!<  64 Mbits (  8 MBytes = 2^(22+1)) */
+#define HAL_XSPI_SIZE_128MB                  (0x00000017U)  /*!< 128 Mbits ( 16 MBytes = 2^(23+1)) */
+#define HAL_XSPI_SIZE_256MB                  (0x00000018U)  /*!< 256 Mbits ( 32 MBytes = 2^(24+1)) */
+#define HAL_XSPI_SIZE_512MB                  (0x00000019U)  /*!< 512 Mbits ( 64 MBytes = 2^(25+1)) */
+#define HAL_XSPI_SIZE_1GB                    (0x0000001AU)  /*!<   1 Gbits (128 MBytes = 2^(26+1)) */
+#define HAL_XSPI_SIZE_2GB                    (0x0000001BU)  /*!<   2 Gbits (256 MBytes = 2^(27+1)) */
+#define HAL_XSPI_SIZE_4GB                    (0x0000001CU)  /*!<   4 Gbits (512 MBytes = 2^(28+1)) */
+#define HAL_XSPI_SIZE_8GB                    (0x0000001DU)  /*!<   8 Gbits (  1 GBytes = 2^(29+1)) */
+#define HAL_XSPI_SIZE_16GB                   (0x0000001EU)  /*!<  16 Gbits (  2 GBytes = 2^(30+1)) */
+#define HAL_XSPI_SIZE_32GB                   (0x0000001FU)  /*!<  32 Gbits (  4 GBytes = 2^(31+1)) */
 /**
   * @}
   */
@@ -471,38 +483,38 @@ typedef struct
 /** @defgroup XSPI_ChipSelectBoundary XSPI Chip Select Boundary
   * @{
   */
-#define HAL_XSPI_BONDARYOF_NONE              (0x00000000U)  /*!     CS boundary disabled        */
-#define HAL_XSPI_BONDARYOF_16B               (0x00000001U)  /*!<  16 bits  (  2  Byte = 2^(1))  */
-#define HAL_XSPI_BONDARYOF_32B               (0x00000002U)  /*!<  32 bits  (  4  Byte = 2^(2))  */
-#define HAL_XSPI_BONDARYOF_64B               (0x00000003U)  /*!<  64 bits  (  8  Byte = 2^(3))  */
-#define HAL_XSPI_BONDARYOF_128B              (0x00000004U)  /*!< 128 bits  ( 16  Byte = 2^(4))  */
-#define HAL_XSPI_BONDARYOF_256B              (0x00000005U)  /*!< 256 bits  ( 32  Byte = 2^(5))  */
-#define HAL_XSPI_BONDARYOF_512B              (0x00000006U)  /*!< 512 bits  ( 64  Byte = 2^(6))  */
-#define HAL_XSPI_BONDARYOF_1KB               (0x00000007U)  /*!<   1 Kbits (128  Byte = 2^(7))  */
-#define HAL_XSPI_BONDARYOF_2KB               (0x00000008U)  /*!<   2 Kbits (256  Byte = 2^(8))  */
-#define HAL_XSPI_BONDARYOF_4KB               (0x00000009U)  /*!<   4 Kbits (512  Byte = 2^(9))  */
-#define HAL_XSPI_BONDARYOF_8KB               (0x0000000AU)  /*!<   8 Kbits (  1 KByte = 2^(10)) */
-#define HAL_XSPI_BONDARYOF_16KB              (0x0000000BU)  /*!<  16 Kbits (  2 KByte = 2^(11)) */
-#define HAL_XSPI_BONDARYOF_32KB              (0x0000000CU)  /*!<  32 Kbits (  4 KByte = 2^(12)) */
-#define HAL_XSPI_BONDARYOF_64KB              (0x0000000DU)  /*!< 64 Kbits  (  8 KByte = 2^(13)) */
-#define HAL_XSPI_BONDARYOF_128KB             (0x0000000EU)  /*!< 128 Kbits ( 16 KByte = 2^(14)) */
-#define HAL_XSPI_BONDARYOF_256KB             (0x0000000FU)  /*!< 256 Kbits ( 32 KByte = 2^(15)) */
-#define HAL_XSPI_BONDARYOF_512KB             (0x00000010U)  /*!< 512 Kbits ( 64 KByte = 2^(16)) */
-#define HAL_XSPI_BONDARYOF_1MB               (0x00000011U)  /*!<   1 Mbits (128 KByte = 2^(17)) */
-#define HAL_XSPI_BONDARYOF_2MB               (0x00000012U)  /*!<   2 Mbits (256 KByte = 2^(18)) */
-#define HAL_XSPI_BONDARYOF_4MB               (0x00000013U)  /*!<   4 Mbits (512 KByte = 2^(19)) */
-#define HAL_XSPI_BONDARYOF_8MB               (0x00000014U)  /*!<   8 Mbits (  1 MByte = 2^(20)) */
-#define HAL_XSPI_BONDARYOF_16MB              (0x00000015U)  /*!<  16 Mbits (  2 MByte = 2^(21)) */
-#define HAL_XSPI_BONDARYOF_32MB              (0x00000016U)  /*!<  32 Mbits (  4 MByte = 2^(22)) */
-#define HAL_XSPI_BONDARYOF_64MB              (0x00000017U)  /*!<  64 Mbits (  8 MByte = 2^(23)) */
-#define HAL_XSPI_BONDARYOF_128MB             (0x00000018U)  /*!< 128 Mbits ( 16 MByte = 2^(24)) */
-#define HAL_XSPI_BONDARYOF_256MB             (0x00000019U)  /*!< 256 Mbits ( 32 MByte = 2^(25)) */
-#define HAL_XSPI_BONDARYOF_512MB             (0x0000001AU)  /*!< 512 Mbits ( 64 MByte = 2^(26)) */
-#define HAL_XSPI_BONDARYOF_1GB               (0x0000001BU)  /*!<   1 Gbits (128 MByte = 2^(27)) */
-#define HAL_XSPI_BONDARYOF_2GB               (0x0000001CU)  /*!<   2 Gbits (256 MByte = 2^(28)) */
-#define HAL_XSPI_BONDARYOF_4GB               (0x0000001DU)  /*!<   4 Gbits (512 MByte = 2^(29)) */
-#define HAL_XSPI_BONDARYOF_8GB               (0x0000001EU)  /*!<   8 Gbits (  1 GByte = 2^(30)) */
-#define HAL_XSPI_BONDARYOF_16GB              (0x0000001FU)  /*!<  16 Gbits (  2 GByte = 2^(31)) */
+#define HAL_XSPI_BONDARYOF_NONE              (0x00000000U)  /*!     CS boundary disabled         */
+#define HAL_XSPI_BONDARYOF_16B               (0x00000001U)  /*!<  16 bits  (  2  Bytes = 2^(1))  */
+#define HAL_XSPI_BONDARYOF_32B               (0x00000002U)  /*!<  32 bits  (  4  Bytes = 2^(2))  */
+#define HAL_XSPI_BONDARYOF_64B               (0x00000003U)  /*!<  64 bits  (  8  Bytes = 2^(3))  */
+#define HAL_XSPI_BONDARYOF_128B              (0x00000004U)  /*!< 128 bits  ( 16  Bytes = 2^(4))  */
+#define HAL_XSPI_BONDARYOF_256B              (0x00000005U)  /*!< 256 bits  ( 32  Bytes = 2^(5))  */
+#define HAL_XSPI_BONDARYOF_512B              (0x00000006U)  /*!< 512 bits  ( 64  Bytes = 2^(6))  */
+#define HAL_XSPI_BONDARYOF_1KB               (0x00000007U)  /*!<   1 Kbits (128  Bytes = 2^(7))  */
+#define HAL_XSPI_BONDARYOF_2KB               (0x00000008U)  /*!<   2 Kbits (256  Bytes = 2^(8))  */
+#define HAL_XSPI_BONDARYOF_4KB               (0x00000009U)  /*!<   4 Kbits (512  Bytes = 2^(9))  */
+#define HAL_XSPI_BONDARYOF_8KB               (0x0000000AU)  /*!<   8 Kbits (  1 KBytes = 2^(10)) */
+#define HAL_XSPI_BONDARYOF_16KB              (0x0000000BU)  /*!<  16 Kbits (  2 KBytes = 2^(11)) */
+#define HAL_XSPI_BONDARYOF_32KB              (0x0000000CU)  /*!<  32 Kbits (  4 KBytes = 2^(12)) */
+#define HAL_XSPI_BONDARYOF_64KB              (0x0000000DU)  /*!<  64 Kbits (  8 KBytes = 2^(13)) */
+#define HAL_XSPI_BONDARYOF_128KB             (0x0000000EU)  /*!< 128 Kbits ( 16 KBytes = 2^(14)) */
+#define HAL_XSPI_BONDARYOF_256KB             (0x0000000FU)  /*!< 256 Kbits ( 32 KBytes = 2^(15)) */
+#define HAL_XSPI_BONDARYOF_512KB             (0x00000010U)  /*!< 512 Kbits ( 64 KBytes = 2^(16)) */
+#define HAL_XSPI_BONDARYOF_1MB               (0x00000011U)  /*!<   1 Mbits (128 KBytes = 2^(17)) */
+#define HAL_XSPI_BONDARYOF_2MB               (0x00000012U)  /*!<   2 Mbits (256 KBytes = 2^(18)) */
+#define HAL_XSPI_BONDARYOF_4MB               (0x00000013U)  /*!<   4 Mbits (512 KBytes = 2^(19)) */
+#define HAL_XSPI_BONDARYOF_8MB               (0x00000014U)  /*!<   8 Mbits (  1 MBytes = 2^(20)) */
+#define HAL_XSPI_BONDARYOF_16MB              (0x00000015U)  /*!<  16 Mbits (  2 MBytes = 2^(21)) */
+#define HAL_XSPI_BONDARYOF_32MB              (0x00000016U)  /*!<  32 Mbits (  4 MBytes = 2^(22)) */
+#define HAL_XSPI_BONDARYOF_64MB              (0x00000017U)  /*!<  64 Mbits (  8 MBytes = 2^(23)) */
+#define HAL_XSPI_BONDARYOF_128MB             (0x00000018U)  /*!< 128 Mbits ( 16 MBytes = 2^(24)) */
+#define HAL_XSPI_BONDARYOF_256MB             (0x00000019U)  /*!< 256 Mbits ( 32 MBytes = 2^(25)) */
+#define HAL_XSPI_BONDARYOF_512MB             (0x0000001AU)  /*!< 512 Mbits ( 64 MBytes = 2^(26)) */
+#define HAL_XSPI_BONDARYOF_1GB               (0x0000001BU)  /*!<   1 Gbits (128 MBytes = 2^(27)) */
+#define HAL_XSPI_BONDARYOF_2GB               (0x0000001CU)  /*!<   2 Gbits (256 MBytes = 2^(28)) */
+#define HAL_XSPI_BONDARYOF_4GB               (0x0000001DU)  /*!<   4 Gbits (512 MBytes = 2^(29)) */
+#define HAL_XSPI_BONDARYOF_8GB               (0x0000001EU)  /*!<   8 Gbits (  1 GBytes = 2^(30)) */
+#define HAL_XSPI_BONDARYOF_16GB              (0x0000001FU)  /*!<  16 Gbits (  2 GBytes = 2^(31)) */
 /**
   * @}
   */
@@ -532,7 +544,7 @@ typedef struct
   * @{
   */
 #define HAL_XSPI_SELECT_IO_3_0               (0x00000000U)                                /*!< Data exchanged over IO[3:0]   */
-#if   defined (HSPI_CR_MSEL)
+#if defined(HSPI_CR_MSEL)
 #define HAL_XSPI_SELECT_IO_7_4               ((uint32_t)HSPI_CR_MSEL_0 | OCTOSPI_CR_MSEL) /*!< Data exchanged over IO[7:4]   */
 #define HAL_XSPI_SELECT_IO_11_8              ((uint32_t)HSPI_CR_MSEL_1)                   /*!< Data exchanged over IO[11:8]  */
 #define HAL_XSPI_SELECT_IO_15_12             ((uint32_t)HSPI_CR_MSEL | OCTOSPI_CR_MSEL)   /*!< Data exchanged over IO[15:12] */
@@ -541,7 +553,7 @@ typedef struct
 #else
 #define HAL_XSPI_SELECT_IO_7_4               ((uint32_t)OCTOSPI_CR_MSEL)                  /*!< Data exchanged over IO[7:4]   */
 #define HAL_XSPI_SELECT_IO_7_0               (0x00000000U)                                /*!< Data exchanged over IO[7:0]   */
-#endif /* 16BITS_AVAILABILITY */
+#endif /* HSPI_CR_MSEL */
 /**
   * @}
   */
@@ -650,10 +662,9 @@ typedef struct
 #define HAL_XSPI_DATA_2_LINES                ((uint32_t)XSPI_CCR_DMODE_1)                       /*!< Data on two lines                         */
 #define HAL_XSPI_DATA_4_LINES                ((uint32_t)(XSPI_CCR_DMODE_0 | XSPI_CCR_DMODE_1))  /*!< Data on four lines                        */
 #define HAL_XSPI_DATA_8_LINES                ((uint32_t)XSPI_CCR_DMODE_2)                       /*!< Data on eight lines                       */
-#if   defined (HSPI_CR_MSEL)
+#if defined(HSPI_CR_MSEL)
 #define HAL_XSPI_DATA_16_LINES               ((uint32_t)(XSPI_CCR_DMODE_0 | XSPI_CCR_DMODE_2))  /*!< Data on sixteen lines valid for HSPI only */
 #endif /* 16BITS_AVAILABILITY */
-
 /**
   * @}
   */
@@ -772,7 +783,8 @@ typedef struct
   * @}
   */
 
-/** @defgroup XSPIM_IOPort XSPI IO Manager IO Port
+#if defined(OCTOSPIM)
+/** @defgroup XSPI_IO_Manger_IOPort XSPI IO Port
   * @{
   */
 #define HAL_XSPIM_IOPORT_NONE              (0x00000000U)                         /*!< IOs not used     */
@@ -796,6 +808,8 @@ typedef struct
   * @}
   */
 
+#endif /* OCTOSPIM */
+#if defined(HSPI_CALFCR_FINE)
 
 /** @defgroup XSPI_DelayType XSPI Calibration Delay Type
   * @{
@@ -817,6 +831,7 @@ typedef struct
   * @}
   */
 
+#endif /* HSPI_CALFCR_FINE */
 /**
   * @}
   */
@@ -829,7 +844,7 @@ typedef struct
   * @param  __HANDLE__ specifies the XSPI Handle.
   * @retval None
   */
-#if defined (USE_HAL_XSPI_REGISTER_CALLBACKS) && (USE_HAL_XSPI_REGISTER_CALLBACKS == 1U)
+#if defined(USE_HAL_XSPI_REGISTER_CALLBACKS) && (USE_HAL_XSPI_REGISTER_CALLBACKS == 1U)
 #define HAL_XSPI_RESET_HANDLE_STATE(__HANDLE__)           do {                                              \
                                                                   (__HANDLE__)->State = HAL_XSPI_STATE_RESET; \
                                                                   (__HANDLE__)->MspInitCallback = NULL;       \
@@ -924,12 +939,12 @@ typedef struct
   */
 
 /* Exported functions --------------------------------------------------------*/
-/** @addtogroup XSPI_Exported_Functions
+/** @addtogroup XSPI_Exported_Functions XSPI Exported Functions
   * @{
   */
 
 /* Initialization/de-initialization functions  ********************************/
-/** @addtogroup XSPI_Exported_Functions_Group1
+/** @addtogroup XSPI_Exported_Functions_Group1 Initialization/de-initialization functions
   * @{
   */
 HAL_StatusTypeDef     HAL_XSPI_Init(XSPI_HandleTypeDef *hxspi);
@@ -942,36 +957,37 @@ void                  HAL_XSPI_MspDeInit(XSPI_HandleTypeDef *hxspi);
   */
 
 /* IO operation functions *****************************************************/
-/** @addtogroup XSPI_Exported_Functions_Group2
+/** @addtogroup XSPI_Exported_Functions_Group2 Input and Output operation functions
   * @{
   */
 /* XSPI IRQ handler function */
 void                  HAL_XSPI_IRQHandler(XSPI_HandleTypeDef *hxspi);
 
 /* XSPI command configuration functions */
-HAL_StatusTypeDef     HAL_XSPI_Command(XSPI_HandleTypeDef *hxspi, XSPI_RegularCmdTypeDef *const pCmd,
+HAL_StatusTypeDef     HAL_XSPI_Command(XSPI_HandleTypeDef *hxspi, const XSPI_RegularCmdTypeDef *pCmd,
                                        uint32_t Timeout);
-HAL_StatusTypeDef     HAL_XSPI_Command_IT(XSPI_HandleTypeDef *hxspi, XSPI_RegularCmdTypeDef *const pCmd);
-HAL_StatusTypeDef     HAL_XSPI_HyperbusCfg(XSPI_HandleTypeDef *hxspi, XSPI_HyperbusCfgTypeDef *const pCfg,
+HAL_StatusTypeDef     HAL_XSPI_Command_IT(XSPI_HandleTypeDef *hxspi, const XSPI_RegularCmdTypeDef *pCmd);
+HAL_StatusTypeDef     HAL_XSPI_HyperbusCfg(XSPI_HandleTypeDef *hxspi, const XSPI_HyperbusCfgTypeDef *pCfg,
                                            uint32_t Timeout);
-HAL_StatusTypeDef     HAL_XSPI_HyperbusCmd(XSPI_HandleTypeDef *hxspi, XSPI_HyperbusCmdTypeDef *const pCmd,
+HAL_StatusTypeDef     HAL_XSPI_HyperbusCmd(XSPI_HandleTypeDef *hxspi, const XSPI_HyperbusCmdTypeDef *pCmd,
                                            uint32_t Timeout);
 
 /* XSPI indirect mode functions */
-HAL_StatusTypeDef     HAL_XSPI_Transmit(XSPI_HandleTypeDef *hxspi, uint8_t *const pData, uint32_t Timeout);
-HAL_StatusTypeDef     HAL_XSPI_Receive(XSPI_HandleTypeDef *hxspi, uint8_t *const pData, uint32_t Timeout);
-HAL_StatusTypeDef     HAL_XSPI_Transmit_IT(XSPI_HandleTypeDef *hxspi, uint8_t *const pData);
-HAL_StatusTypeDef     HAL_XSPI_Receive_IT(XSPI_HandleTypeDef *hxspi, uint8_t *const pData);
-HAL_StatusTypeDef     HAL_XSPI_Transmit_DMA(XSPI_HandleTypeDef *hxspi, uint8_t *const pData);
-HAL_StatusTypeDef     HAL_XSPI_Receive_DMA(XSPI_HandleTypeDef *hxspi, uint8_t *const pData);
+HAL_StatusTypeDef     HAL_XSPI_Transmit(XSPI_HandleTypeDef *hxspi, const uint8_t *pData, uint32_t Timeout);
+HAL_StatusTypeDef     HAL_XSPI_Receive(XSPI_HandleTypeDef *hxspi, uint8_t *pData, uint32_t Timeout);
+HAL_StatusTypeDef     HAL_XSPI_Transmit_IT(XSPI_HandleTypeDef *hxspi, const uint8_t *pData);
+HAL_StatusTypeDef     HAL_XSPI_Receive_IT(XSPI_HandleTypeDef *hxspi, uint8_t *pData);
+HAL_StatusTypeDef     HAL_XSPI_Transmit_DMA(XSPI_HandleTypeDef *hxspi, const uint8_t *pData);
+HAL_StatusTypeDef     HAL_XSPI_Receive_DMA(XSPI_HandleTypeDef *hxspi, uint8_t *pData);
 
 /* XSPI status flag polling mode functions */
-HAL_StatusTypeDef     HAL_XSPI_AutoPolling(XSPI_HandleTypeDef *hxspi, XSPI_AutoPollingTypeDef *const pCfg,
+HAL_StatusTypeDef     HAL_XSPI_AutoPolling(XSPI_HandleTypeDef *hxspi, const XSPI_AutoPollingTypeDef *pCfg,
                                            uint32_t Timeout);
-HAL_StatusTypeDef     HAL_XSPI_AutoPolling_IT(XSPI_HandleTypeDef *hxspi, XSPI_AutoPollingTypeDef *const pCfg);
+HAL_StatusTypeDef     HAL_XSPI_AutoPolling_IT(XSPI_HandleTypeDef *hxspi, const XSPI_AutoPollingTypeDef *pCfg);
 
 /* XSPI memory-mapped mode functions */
-HAL_StatusTypeDef     HAL_XSPI_MemoryMapped(XSPI_HandleTypeDef *hxspi,  XSPI_MemoryMappedTypeDef *const pCfg);
+HAL_StatusTypeDef     HAL_XSPI_MemoryMapped(XSPI_HandleTypeDef *hxspi,  const XSPI_MemoryMappedTypeDef *pCfg);
+uint32_t              HAL_XSPI_IsMemoryMapped(XSPI_HandleTypeDef *hxspi);
 
 /* Callback functions in non-blocking modes ***********************************/
 void                  HAL_XSPI_ErrorCallback(XSPI_HandleTypeDef *hxspi);
@@ -991,7 +1007,7 @@ void                  HAL_XSPI_StatusMatchCallback(XSPI_HandleTypeDef *hxspi);
 /* XSPI memory-mapped mode functions */
 void                  HAL_XSPI_TimeOutCallback(XSPI_HandleTypeDef *hxspi);
 
-#if defined (USE_HAL_XSPI_REGISTER_CALLBACKS) && (USE_HAL_XSPI_REGISTER_CALLBACKS == 1U)
+#if defined(USE_HAL_XSPI_REGISTER_CALLBACKS) && (USE_HAL_XSPI_REGISTER_CALLBACKS == 1U)
 /* XSPI callback registering/unregistering */
 HAL_StatusTypeDef     HAL_XSPI_RegisterCallback(XSPI_HandleTypeDef *hxspi, HAL_XSPI_CallbackIDTypeDef CallbackID,
                                                 pXSPI_CallbackTypeDef pCallback);
@@ -1003,56 +1019,63 @@ HAL_StatusTypeDef     HAL_XSPI_UnRegisterCallback(XSPI_HandleTypeDef *hxspi, HAL
   */
 
 /* Peripheral Control and State functions  ************************************/
-/** @addtogroup XSPI_Exported_Functions_Group3
+/** @addtogroup XSPI_Exported_Functions_Group3 Peripheral Control and State functions
   * @{
   */
 HAL_StatusTypeDef     HAL_XSPI_Abort(XSPI_HandleTypeDef *hxspi);
 HAL_StatusTypeDef     HAL_XSPI_Abort_IT(XSPI_HandleTypeDef *hxspi);
 HAL_StatusTypeDef     HAL_XSPI_SetFifoThreshold(XSPI_HandleTypeDef *hxspi, uint32_t Threshold);
-uint32_t              HAL_XSPI_GetFifoThreshold(XSPI_HandleTypeDef *hxspi);
+uint32_t              HAL_XSPI_GetFifoThreshold(const XSPI_HandleTypeDef *hxspi);
+HAL_StatusTypeDef     HAL_XSPI_SetMemoryType(XSPI_HandleTypeDef *hxspi, uint32_t Type);
+HAL_StatusTypeDef     HAL_XSPI_SetDeviceSize(XSPI_HandleTypeDef *hxspi, uint32_t Size);
+HAL_StatusTypeDef     HAL_XSPI_SetClockPrescaler(XSPI_HandleTypeDef *hxspi, uint32_t Prescaler);
 HAL_StatusTypeDef     HAL_XSPI_SetTimeout(XSPI_HandleTypeDef *hxspi, uint32_t Timeout);
-uint32_t              HAL_XSPI_GetError(XSPI_HandleTypeDef *hxspi);
-uint32_t              HAL_XSPI_GetState(XSPI_HandleTypeDef *hxspi);
+uint32_t              HAL_XSPI_GetError(const XSPI_HandleTypeDef *hxspi);
+uint32_t              HAL_XSPI_GetState(const XSPI_HandleTypeDef *hxspi);
 
 /**
   * @}
   */
 
+#if defined(OCTOSPIM)
 /* XSPI IO Manager configuration function  ************************************/
-/** @addtogroup XSPI_Exported_Functions_Group4
+/** @addtogroup XSPI_Exported_Functions_Group4  IO Manager configuration function
   * @{
   */
-HAL_StatusTypeDef     HAL_XSPIM_Config(XSPI_HandleTypeDef *hxspi, XSPIM_CfgTypeDef *const pCfg, uint32_t Timeout);
+HAL_StatusTypeDef     HAL_XSPIM_Config(XSPI_HandleTypeDef *hxspi, const XSPIM_CfgTypeDef *pCfg, uint32_t Timeout);
 
 /**
   * @}
   */
 
+#endif /* OCTOSPIM */
 /* XSPI Delay Block functions  ************************************/
 /** @addtogroup XSPI_Exported_Functions_Group5 Delay Block function
   * @{
   */
 
-HAL_StatusTypeDef      HAL_XSPI_DLYB_SetConfig(XSPI_HandleTypeDef *hxspi, HAL_XSPI_DLYB_CfgTypeDef  *const pdlyb_cfg);
-HAL_StatusTypeDef      HAL_XSPI_DLYB_GetConfig(XSPI_HandleTypeDef *hxspi, HAL_XSPI_DLYB_CfgTypeDef  *const pdlyb_cfg);
+HAL_StatusTypeDef      HAL_XSPI_DLYB_SetConfig(XSPI_HandleTypeDef *hxspi, const HAL_XSPI_DLYB_CfgTypeDef *pdlyb_cfg);
+HAL_StatusTypeDef      HAL_XSPI_DLYB_GetConfig(XSPI_HandleTypeDef *hxspi, HAL_XSPI_DLYB_CfgTypeDef *pdlyb_cfg);
 HAL_StatusTypeDef      HAL_XSPI_DLYB_GetClockPeriod(XSPI_HandleTypeDef *hxspi,
-                                                    HAL_XSPI_DLYB_CfgTypeDef   *const pdlyb_cfg);
+                                                    HAL_XSPI_DLYB_CfgTypeDef  *pdlyb_cfg);
 
 /**
   * @}
   */
 
+#if defined(HSPI_CALFCR_FINE)
 /* XSPI high-speed interface and calibration functions  ***********************/
-/** @addtogroup XSPI_Exported_Functions_Group6
+/** @addtogroup XSPI_Exported_Functions_Group6 High-speed interface and calibration functions
   * @{
   */
-HAL_StatusTypeDef     HAL_XSPI_GetDelayValue(XSPI_HandleTypeDef *hxspi, XSPI_HSCalTypeDef *const pCfg);
-HAL_StatusTypeDef     HAL_XSPI_SetDelayValue(XSPI_HandleTypeDef *hxspi, XSPI_HSCalTypeDef *const pCfg);
+HAL_StatusTypeDef     HAL_XSPI_GetDelayValue(XSPI_HandleTypeDef *hxspi, XSPI_HSCalTypeDef *pCfg);
+HAL_StatusTypeDef     HAL_XSPI_SetDelayValue(XSPI_HandleTypeDef *hxspi, const XSPI_HSCalTypeDef *pCfg);
 
 /**
   * @}
   */
 
+#endif /* HSPI_CALFCR_FINE */
 /**
   * @}
   */
@@ -1065,14 +1088,17 @@ HAL_StatusTypeDef     HAL_XSPI_SetDelayValue(XSPI_HandleTypeDef *hxspi, XSPI_HSC
 #define IS_OCTOSPI_FIFO_THRESHOLD_BYTE(THRESHOLD) (((THRESHOLD) >= 1U) &&\
                                                    ((THRESHOLD) <= ((OCTOSPI_CR_FTHRES >> OCTOSPI_CR_FTHRES_Pos)+1U)))
 
-#define IS_HSPI_FIFO_THRESHOLD_BYTE(THRESHOLD)    (((THRESHOLD) >= 1U)\
-                                                   && ((THRESHOLD) <= ((HSPI_CR_FTHRES >> HSPI_CR_FTHRES_Pos)+1U)))
+
+#if defined(HSPI1)
+#define IS_HSPI_FIFO_THRESHOLD_BYTE(THRESHOLD)    (((THRESHOLD) >= 1U) &&\
+                                                   ((THRESHOLD) <= ((HSPI_CR_FTHRES >> HSPI_CR_FTHRES_Pos)+1U)))
+#endif /* HSPI1 */
 #define IS_XSPI_MEMORY_MODE(MODE)                 (((MODE) == HAL_XSPI_SINGLE_MEM) || \
                                                    ((MODE) == HAL_XSPI_DUAL_MEM))
 
 #define IS_XSPI_MEMORY_TYPE(TYPE)                 (((TYPE) == HAL_XSPI_MEMTYPE_MICRON)       || \
                                                    ((TYPE) == HAL_XSPI_MEMTYPE_MACRONIX)     || \
-                                                   ((TYPE) == HAL_XSPI_MEMTYPE_APMEM)     || \
+                                                   ((TYPE) == HAL_XSPI_MEMTYPE_APMEM)        || \
                                                    ((TYPE) == HAL_XSPI_MEMTYPE_MACRONIX_RAM) || \
                                                    ((TYPE) == HAL_XSPI_MEMTYPE_HYPERBUS)     || \
                                                    ((TYPE) == HAL_XSPI_MEMTYPE_APMEM_16BITS))
@@ -1168,7 +1194,6 @@ HAL_StatusTypeDef     HAL_XSPI_SetDelayValue(XSPI_HandleTypeDef *hxspi, XSPI_HSC
 #define IS_XSPI_DLYB_BYPASS(DLYB)                 (((DLYB) == HAL_XSPI_DELAY_BLOCK_ON) || \
                                                    ((DLYB) == HAL_XSPI_DELAY_BLOCK_BYPASS))
 
-
 #define IS_XSPI_MAXTRAN(NB_BYTES)                 ((NB_BYTES) <= 255U)
 
 #define IS_XSPI_OPERATION_TYPE(TYPE)              (((TYPE) == HAL_XSPI_OPTYPE_COMMON_CFG) || \
@@ -1180,6 +1205,7 @@ HAL_StatusTypeDef     HAL_XSPI_SetDelayValue(XSPI_HandleTypeDef *hxspi, XSPI_HSC
                                                    ((MEMSEL) == HAL_XSPI_SELECT_IO_7_4)   || \
                                                    ((MEMSEL) == HAL_XSPI_SELECT_IO_7_0))
 
+#if defined(HSPI1)
 #define IS_HSPI_IO_SELECT(MEMSEL)                 (((MEMSEL) == HAL_XSPI_SELECT_IO_3_0)   || \
                                                    ((MEMSEL) == HAL_XSPI_SELECT_IO_7_4)   || \
                                                    ((MEMSEL) == HAL_XSPI_SELECT_IO_11_8)  || \
@@ -1187,6 +1213,7 @@ HAL_StatusTypeDef     HAL_XSPI_SetDelayValue(XSPI_HandleTypeDef *hxspi, XSPI_HSC
                                                    ((MEMSEL) == HAL_XSPI_SELECT_IO_7_0)   || \
                                                    ((MEMSEL) == HAL_XSPI_SELECT_IO_15_8))
 
+#endif /* HSPI1 */
 #define IS_XSPI_INSTRUCTION(OPCODE)               ((OPCODE) <= 0xFFFFFFFFU)
 
 #define IS_XSPI_INSTRUCTION_MODE(MODE)            (((MODE) == HAL_XSPI_INSTRUCTION_NONE)    || \
@@ -1237,13 +1264,19 @@ HAL_StatusTypeDef     HAL_XSPI_SetDelayValue(XSPI_HandleTypeDef *hxspi, XSPI_HSC
                                                    ((MODE) == HAL_XSPI_DATA_4_LINES) || \
                                                    ((MODE) == HAL_XSPI_DATA_8_LINES))
 
-#define IS_HSPI_DATA_MODE(MODE)                   (((MODE) == HAL_XSPI_DATA_NONE)    || \
-                                                   ((MODE) == HAL_XSPI_DATA_1_LINE)  || \
-                                                   ((MODE) == HAL_XSPI_DATA_2_LINES) || \
-                                                   ((MODE) == HAL_XSPI_DATA_4_LINES) || \
-                                                   ((MODE) == HAL_XSPI_DATA_8_LINES) || \
-                                                   ((MODE) == HAL_XSPI_DATA_16_LINES))
+#if defined(HSPI1)
+#define IS_HSPI_DATA_MODE(TYPE,MODE)              (((TYPE) == (HAL_XSPI_MEMTYPE_HYPERBUS)) ? \
+                                                   (((MODE) == HAL_XSPI_DATA_NONE)    || \
+                                                    ((MODE) == HAL_XSPI_DATA_8_LINES) || \
+                                                    ((MODE) == HAL_XSPI_DATA_16_LINES)): \
+                                                   (((MODE) == HAL_XSPI_DATA_NONE)    || \
+                                                    ((MODE) == HAL_XSPI_DATA_1_LINE)  || \
+                                                    ((MODE) == HAL_XSPI_DATA_2_LINES) || \
+                                                    ((MODE) == HAL_XSPI_DATA_4_LINES) || \
+                                                    ((MODE) == HAL_XSPI_DATA_8_LINES) || \
+                                                    ((MODE) == HAL_XSPI_DATA_16_LINES)))
 
+#endif /* HSPI1 */
 #define IS_XSPI_DATA_LENGTH(NUMBER)               ((NUMBER) >= 1U)
 
 #define IS_XSPI_DATA_DTR_MODE(MODE)               (((MODE) == HAL_XSPI_DATA_DTR_DISABLE) || \
@@ -1285,6 +1318,11 @@ HAL_StatusTypeDef     HAL_XSPI_SetDelayValue(XSPI_HandleTypeDef *hxspi, XSPI_HSC
 
 #define IS_XSPI_TIMEOUT_PERIOD(PERIOD)            ((PERIOD) <= 0xFFFFU)
 
+#define IS_XSPI_PROG_DATA(SET_DATA, REQ_DATA)     ((SET_DATA) == (REQ_DATA))
+
+#define IS_XSPI_PROG_ADDR(SET_ADDR, REQ_ADDR)     ((SET_ADDR) == (REQ_ADDR))
+
+#if defined(OCTOSPIM)
 #define IS_XSPIM_PORT(NUMBER)                     (((NUMBER) >= 1U) && ((NUMBER) <= 8U))
 
 #define IS_XSPIM_DQS_PORT(NUMBER)                 ((NUMBER) <= 8U)
@@ -1308,6 +1346,7 @@ HAL_StatusTypeDef     HAL_XSPI_SetDelayValue(XSPI_HandleTypeDef *hxspi, XSPI_HSC
 
 #define IS_XSPIM_REQ2ACKTIME(TIME)                (((TIME) >= 1U) && ((TIME) <= 256U))
 
+#endif /* OCTOSPIM */
 #define IS_XSPI_DELAY_TYPE(TYPE)                  (((TYPE) == HAL_XSPI_CAL_FULL_CYCLE_DELAY)   || \
                                                    ((TYPE) == HAL_XSPI_CAL_FEEDBACK_CLK_DELAY) || \
                                                    ((TYPE) == HAL_XSPI_CAL_DATA_OUTPUT_DELAY)  || \

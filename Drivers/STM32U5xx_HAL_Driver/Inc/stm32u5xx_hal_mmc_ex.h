@@ -30,7 +30,7 @@ extern "C" {
 /** @addtogroup STM32U5xx_HAL_Driver
   * @{
   */
-
+#if defined (SDMMC1) || defined (SDMMC2)
 /** @addtogroup MMCEx
   * @brief SD HAL extended module driver
   * @{
@@ -69,9 +69,11 @@ extern "C" {
 /** @defgroup MMCEx_Exported_Functions_Group1 MultiBuffer functions
   * @{
   */
-HAL_StatusTypeDef HAL_MMCEx_DMALinkedList_ReadBlocks(MMC_HandleTypeDef *hmmc, SDMMC_DMALinkedListTypeDef *pLinkedList,
+HAL_StatusTypeDef HAL_MMCEx_DMALinkedList_ReadBlocks(MMC_HandleTypeDef *hmmc,
+                                                     const MMC_DMALinkedListTypeDef *pLinkedList,
                                                      uint32_t BlockAdd, uint32_t NumberOfBlocks);
-HAL_StatusTypeDef HAL_MMCEx_DMALinkedList_WriteBlocks(MMC_HandleTypeDef *hmmc, SDMMC_DMALinkedListTypeDef *pLinkedList,
+HAL_StatusTypeDef HAL_MMCEx_DMALinkedList_WriteBlocks(MMC_HandleTypeDef *hmmc,
+                                                      const MMC_DMALinkedListTypeDef *pLinkedList,
                                                       uint32_t BlockAdd, uint32_t NumberOfBlocks);
 
 HAL_StatusTypeDef HAL_MMCEx_DMALinkedList_BuildNode(MMC_DMALinkNodeTypeDef *pNode,
@@ -109,6 +111,7 @@ void HAL_MMCEx_Write_DMALnkLstBufCpltCallback(MMC_HandleTypeDef *hmmc);
 /**
   * @}
   */
+#endif /* SDMMC1 || SDMMC2 */
 
 /**
   * @}

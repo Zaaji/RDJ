@@ -1,0 +1,2627 @@
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 1
+
+
+   1              		.cpu cortex-m33
+   2              		.arch armv8-m.main
+   3              		.fpu fpv5-sp-d16
+   4              		.arch_extension dsp
+   5              		.eabi_attribute 27, 1
+   6              		.eabi_attribute 28, 1
+   7              		.eabi_attribute 20, 1
+   8              		.eabi_attribute 21, 1
+   9              		.eabi_attribute 23, 3
+  10              		.eabi_attribute 24, 1
+  11              		.eabi_attribute 25, 1
+  12              		.eabi_attribute 26, 1
+  13              		.eabi_attribute 30, 1
+  14              		.eabi_attribute 34, 1
+  15              		.eabi_attribute 18, 4
+  16              		.file	"stm32u5xx_hal.c"
+  17              		.text
+  18              	.Ltext0:
+  19              		.cfi_sections	.debug_frame
+  20              		.section	.text.HAL_MspInit,"ax",%progbits
+  21              		.align	1
+  22              		.weak	HAL_MspInit
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	HAL_MspInit:
+  28              	.LFB159:
+  29              		.file 1 "Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c"
+   1:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+   2:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   ******************************************************************************
+   3:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @file    stm32u5xx_hal.c
+   4:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @author  MCD Application Team
+   5:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief   HAL module driver.
+   6:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *          This is the common part of the HAL initialization
+   7:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *
+   8:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   ******************************************************************************
+   9:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @attention
+  10:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *
+  11:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * Copyright (c) 2021 STMicroelectronics.
+  12:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * All rights reserved.
+  13:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *
+  14:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * This software is licensed under terms that can be found in the LICENSE file
+  15:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * in the root directory of this software component.
+  16:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * If no LICENSE file comes with this software, it is provided AS-IS.
+  17:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *
+  18:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   ******************************************************************************
+  19:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   @verbatim
+  20:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   ==============================================================================
+  21:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****                      ##### How to use this driver #####
+  22:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   ==============================================================================
+  23:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     [..]
+  24:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     The common HAL driver contains a set of generic and common APIs that can be
+  25:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     used by the PPP peripheral drivers and the user to start using the HAL.
+  26:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     [..]
+  27:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     The HAL contains two APIs' categories:
+  28:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****          (+) Common HAL APIs
+  29:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****          (+) Services HAL APIs
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 2
+
+
+  30:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+  31:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   @endverbatim
+  32:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   ******************************************************************************
+  33:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+  34:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+  35:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /* Includes ------------------------------------------------------------------*/
+  36:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** #include "stm32u5xx_hal.h"
+  37:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+  38:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /** @addtogroup STM32U5xx_HAL_Driver
+  39:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @{
+  40:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+  41:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+  42:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /** @defgroup HAL HAL
+  43:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief HAL module driver
+  44:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @{
+  45:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+  46:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+  47:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** #ifdef HAL_MODULE_ENABLED
+  48:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+  49:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /* Private typedef -----------------------------------------------------------*/
+  50:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /* Private define ------------------------------------------------------------*/
+  51:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /** @defgroup HAL_Private_Defines HAL Private Defines
+  52:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @{
+  53:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+  54:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+  55:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief STM32U5xx HAL Driver version number 1.6.2
+  56:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****    */
+  57:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** #define __STM32U5xx_HAL_VERSION_MAIN   (0x01UL) /*!< [31:24] main version */
+  58:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** #define __STM32U5xx_HAL_VERSION_SUB1   (0x06UL) /*!< [23:16] sub1 version */
+  59:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** #define __STM32U5xx_HAL_VERSION_SUB2   (0x02UL) /*!< [15:8]  sub2 version */
+  60:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** #define __STM32U5xx_HAL_VERSION_RC     (0x00UL) /*!< [7:0]  release candidate */
+  61:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** #define __STM32U5xx_HAL_VERSION         ((__STM32U5xx_HAL_VERSION_MAIN << 24U)\
+  62:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****                                          |(__STM32U5xx_HAL_VERSION_SUB1 << 16U)\
+  63:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****                                          |(__STM32U5xx_HAL_VERSION_SUB2 << 8U )\
+  64:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****                                          |(__STM32U5xx_HAL_VERSION_RC))
+  65:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+  66:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** #define VREFBUF_TIMEOUT_VALUE           10U   /* 10 ms (to be confirmed) */
+  67:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+  68:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @}
+  69:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+  70:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /* Private macro -------------------------------------------------------------*/
+  71:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /* Private variables ---------------------------------------------------------*/
+  72:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /* Exported variables --------------------------------------------------------*/
+  73:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+  74:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /** @defgroup HAL_Exported_Variables HAL Exported Variables
+  75:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @{
+  76:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+  77:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** __IO uint32_t uwTick;
+  78:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** uint32_t uwTickPrio   = (1UL << __NVIC_PRIO_BITS); /* Invalid PRIO */
+  79:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** HAL_TickFreqTypeDef uwTickFreq = HAL_TICK_FREQ_DEFAULT;  /* 1KHz */
+  80:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+  81:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @}
+  82:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+  83:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+  84:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /* Private function prototypes -----------------------------------------------*/
+  85:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /* Exported functions --------------------------------------------------------*/
+  86:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 3
+
+
+  87:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /** @defgroup HAL_Exported_Functions HAL Exported Functions
+  88:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @{
+  89:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+  90:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+  91:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /** @defgroup HAL_Exported_Functions_Group1 HAL Initialization and de-initialization Functions
+  92:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *  @brief    Initialization and de-initialization functions
+  93:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *
+  94:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** @verbatim
+  95:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****  ===============================================================================
+  96:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****               ##### Initialization and de-initialization functions #####
+  97:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****  ===============================================================================
+  98:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     [..]  This section provides functions allowing to:
+  99:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****       (+) Initializes the Flash interface the NVIC allocation and initial clock
+ 100:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****           configuration. It initializes the systick also when timeout is needed
+ 101:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****           and the backup domain when enabled.
+ 102:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****       (+) De-Initializes common part of the HAL.
+ 103:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****       (+) Configure The time base source to have 1ms time base with a dedicated
+ 104:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****           Tick interrupt priority.
+ 105:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****         (++) SysTick timer is used by default as source of time base, but user
+ 106:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****              can eventually implement his proper time base source (a general purpose
+ 107:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****              timer for example or other time source), keeping in mind that Time base
+ 108:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****              duration should be kept 1ms since PPP_TIMEOUT_VALUEs are defined and
+ 109:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****              handled in milliseconds basis.
+ 110:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****         (++) Time base configuration function (HAL_InitTick ()) is called automatically
+ 111:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****              at the beginning of the program after reset by HAL_Init() or at any time
+ 112:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****              when clock is configured, by HAL_RCC_ClockConfig().
+ 113:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****         (++) Source of time base is configured  to generate interrupts at regular
+ 114:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****              time intervals. Care must be taken if HAL_Delay() is called from a
+ 115:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****              peripheral ISR process, the Tick interrupt line must have higher priority
+ 116:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****             (numerically lower) than the peripheral interrupt. Otherwise the caller
+ 117:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****             ISR process will be blocked.
+ 118:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****        (++) functions affecting time base configurations are declared as __weak
+ 119:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****              to make  override possible  in case of other  implementations in user file.
+ 120:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** @endverbatim
+ 121:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @{
+ 122:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 123:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 124:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 125:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief  Configure the Flash prefetch, the time base source, NVIC and any required global low
+ 126:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *         level hardware by calling the HAL_MspInit() callback function to be optionally defined
+ 127:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *         in user file stm32u5xx_hal_msp.c.
+ 128:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *
+ 129:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @note   HAL_Init() function is called at the beginning of program after reset and before
+ 130:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *         the clock configuration.
+ 131:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *
+ 132:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @note   In the default implementation the System Timer (SysTick) is used as source of time base
+ 133:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *         The SysTick configuration is based on MSI clock, as MSI is the clock
+ 134:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *         used after a system Reset and the NVIC configuration is set to Priority group 4.
+ 135:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *         Once done, time base tick starts incrementing: the tick variable counter is incremented
+ 136:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *         each 1ms in the SysTick_Handler() interrupt handler.
+ 137:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *
+ 138:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval HAL status
+ 139:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 140:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** HAL_StatusTypeDef HAL_Init(void)
+ 141:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ 142:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   /* Configure Flash prefetch */
+ 143:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** #if (PREFETCH_ENABLE != 0U)
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 4
+
+
+ 144:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   __HAL_FLASH_PREFETCH_BUFFER_ENABLE();
+ 145:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** #endif /* PREFETCH_ENABLE */
+ 146:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 147:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   /* Set Interrupt Group Priority */
+ 148:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   HAL_NVIC_SetPriorityGrouping(NVIC_PRIORITYGROUP_4);
+ 149:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 150:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   /* Update the SystemCoreClock global variable */
+ 151:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   SystemCoreClock = HAL_RCC_GetSysClockFreq() >> AHBPrescTable[(RCC->CFGR2 & RCC_CFGR2_HPRE) >> RCC
+ 152:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 153:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   /* Select HCLK as SysTick clock source */
+ 154:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
+ 155:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 156:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   /* Use systick as time base source and configure 1ms tick (default clock after Reset is HSI) */
+ 157:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   if (HAL_InitTick(TICK_INT_PRIORITY) != HAL_OK)
+ 158:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   {
+ 159:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     return HAL_ERROR;
+ 160:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   }
+ 161:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 162:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   /* Init the low level hardware */
+ 163:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   HAL_MspInit();
+ 164:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 165:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   /* Return function status */
+ 166:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   return HAL_OK;
+ 167:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 168:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 169:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 170:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief  This function de-Initializes common part of the HAL and stops the systick.
+ 171:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *         This function is optional.
+ 172:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval HAL status
+ 173:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 174:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** HAL_StatusTypeDef HAL_DeInit(void)
+ 175:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ 176:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   /* Reset of all peripherals */
+ 177:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   __HAL_RCC_APB1_FORCE_RESET();
+ 178:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   __HAL_RCC_APB1_RELEASE_RESET();
+ 179:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 180:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   __HAL_RCC_APB2_FORCE_RESET();
+ 181:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   __HAL_RCC_APB2_RELEASE_RESET();
+ 182:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 183:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   __HAL_RCC_AHB1_FORCE_RESET();
+ 184:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   __HAL_RCC_AHB1_RELEASE_RESET();
+ 185:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 186:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   __HAL_RCC_AHB2_FORCE_RESET();
+ 187:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   __HAL_RCC_AHB2_RELEASE_RESET();
+ 188:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 189:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   __HAL_RCC_AHB3_FORCE_RESET();
+ 190:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   __HAL_RCC_AHB3_RELEASE_RESET();
+ 191:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 192:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   /* De-Init the low level hardware */
+ 193:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   HAL_MspDeInit();
+ 194:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 195:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   /* Return function status */
+ 196:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   return HAL_OK;
+ 197:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 198:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 199:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 200:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief  Initializes the MSP.
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 5
+
+
+ 201:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval None
+ 202:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 203:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** __weak void HAL_MspInit(void)
+ 204:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+  30              		.loc 1 204 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		@ link register save eliminated.
+ 205:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   /* NOTE : This function Should not be modified, when the callback is needed,
+ 206:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****             the HAL_MspInit could be implemented in the user file
+ 207:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****    */
+ 208:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+  35              		.loc 1 208 1 view .LVU1
+  36 0000 7047     		bx	lr
+  37              		.cfi_endproc
+  38              	.LFE159:
+  40              		.section	.text.HAL_MspDeInit,"ax",%progbits
+  41              		.align	1
+  42              		.weak	HAL_MspDeInit
+  43              		.syntax unified
+  44              		.thumb
+  45              		.thumb_func
+  47              	HAL_MspDeInit:
+  48              	.LFB160:
+ 209:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 210:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 211:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief  DeInitializes the MSP.
+ 212:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval None
+ 213:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 214:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** __weak void HAL_MspDeInit(void)
+ 215:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+  49              		.loc 1 215 1 view -0
+  50              		.cfi_startproc
+  51              		@ args = 0, pretend = 0, frame = 0
+  52              		@ frame_needed = 0, uses_anonymous_args = 0
+  53              		@ link register save eliminated.
+ 216:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   /* NOTE : This function Should not be modified, when the callback is needed,
+ 217:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****             the HAL_MspDeInit could be implemented in the user file
+ 218:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****    */
+ 219:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+  54              		.loc 1 219 1 view .LVU3
+  55 0000 7047     		bx	lr
+  56              		.cfi_endproc
+  57              	.LFE160:
+  59              		.section	.text.HAL_DeInit,"ax",%progbits
+  60              		.align	1
+  61              		.global	HAL_DeInit
+  62              		.syntax unified
+  63              		.thumb
+  64              		.thumb_func
+  66              	HAL_DeInit:
+  67              	.LFB158:
+ 175:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   /* Reset of all peripherals */
+  68              		.loc 1 175 1 view -0
+  69              		.cfi_startproc
+  70              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 6
+
+
+  71              		@ frame_needed = 0, uses_anonymous_args = 0
+  72 0000 10B5     		push	{r4, lr}
+  73              	.LCFI0:
+  74              		.cfi_def_cfa_offset 8
+  75              		.cfi_offset 4, -8
+  76              		.cfi_offset 14, -4
+ 177:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   __HAL_RCC_APB1_RELEASE_RESET();
+  77              		.loc 1 177 3 view .LVU5
+ 177:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   __HAL_RCC_APB1_RELEASE_RESET();
+  78              		.loc 1 177 3 view .LVU6
+  79 0002 0E4B     		ldr	r3, .L5
+  80 0004 0E4A     		ldr	r2, .L5+4
+  81 0006 5A67     		str	r2, [r3, #116]
+ 177:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   __HAL_RCC_APB1_RELEASE_RESET();
+  82              		.loc 1 177 3 view .LVU7
+  83 0008 0E4A     		ldr	r2, .L5+8
+  84 000a 9A67     		str	r2, [r3, #120]
+ 177:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   __HAL_RCC_APB1_RELEASE_RESET();
+  85              		.loc 1 177 3 view .LVU8
+ 178:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+  86              		.loc 1 178 3 view .LVU9
+ 178:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+  87              		.loc 1 178 3 view .LVU10
+  88 000c 0024     		movs	r4, #0
+  89 000e 5C67     		str	r4, [r3, #116]
+ 178:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+  90              		.loc 1 178 3 view .LVU11
+  91 0010 9C67     		str	r4, [r3, #120]
+ 178:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+  92              		.loc 1 178 3 view .LVU12
+ 180:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   __HAL_RCC_APB2_RELEASE_RESET();
+  93              		.loc 1 180 3 view .LVU13
+  94 0012 0D4A     		ldr	r2, .L5+12
+  95 0014 DA67     		str	r2, [r3, #124]
+ 181:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+  96              		.loc 1 181 3 view .LVU14
+  97 0016 DC67     		str	r4, [r3, #124]
+ 183:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   __HAL_RCC_AHB1_RELEASE_RESET();
+  98              		.loc 1 183 3 view .LVU15
+  99 0018 0C4A     		ldr	r2, .L5+16
+ 100 001a 1A66     		str	r2, [r3, #96]
+ 184:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 101              		.loc 1 184 3 view .LVU16
+ 102 001c 1C66     		str	r4, [r3, #96]
+ 186:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   __HAL_RCC_AHB2_RELEASE_RESET();
+ 103              		.loc 1 186 3 view .LVU17
+ 186:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   __HAL_RCC_AHB2_RELEASE_RESET();
+ 104              		.loc 1 186 3 view .LVU18
+ 105 001e 0C4A     		ldr	r2, .L5+20
+ 106 0020 5A66     		str	r2, [r3, #100]
+ 186:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   __HAL_RCC_AHB2_RELEASE_RESET();
+ 107              		.loc 1 186 3 view .LVU19
+ 108 0022 40F21112 		movw	r2, #273
+ 109 0026 9A66     		str	r2, [r3, #104]
+ 186:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   __HAL_RCC_AHB2_RELEASE_RESET();
+ 110              		.loc 1 186 3 view .LVU20
+ 187:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 7
+
+
+ 111              		.loc 1 187 3 view .LVU21
+ 187:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 112              		.loc 1 187 3 view .LVU22
+ 113 0028 5C66     		str	r4, [r3, #100]
+ 187:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 114              		.loc 1 187 3 view .LVU23
+ 115 002a 9C66     		str	r4, [r3, #104]
+ 187:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 116              		.loc 1 187 3 view .LVU24
+ 189:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   __HAL_RCC_AHB3_RELEASE_RESET();
+ 117              		.loc 1 189 3 view .LVU25
+ 118 002c 40F26162 		movw	r2, #1633
+ 119 0030 DA66     		str	r2, [r3, #108]
+ 190:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 120              		.loc 1 190 3 view .LVU26
+ 121 0032 DC66     		str	r4, [r3, #108]
+ 193:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 122              		.loc 1 193 3 view .LVU27
+ 123 0034 FFF7FEFF 		bl	HAL_MspDeInit
+ 124              	.LVL0:
+ 196:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 125              		.loc 1 196 3 view .LVU28
+ 197:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 126              		.loc 1 197 1 is_stmt 0 view .LVU29
+ 127 0038 2046     		mov	r0, r4
+ 128 003a 10BD     		pop	{r4, pc}
+ 129              	.L6:
+ 130              		.align	2
+ 131              	.L5:
+ 132 003c 000C0246 		.word	1174539264
+ 133 0040 3F407E02 		.word	41828415
+ 134 0044 22028000 		.word	8389154
+ 135 0048 00786700 		.word	6780928
+ 136 004c 0F100700 		.word	462863
+ 137 0050 FF55BF19 		.word	431969791
+ 138              		.cfi_endproc
+ 139              	.LFE158:
+ 141              		.section	.text.HAL_InitTick,"ax",%progbits
+ 142              		.align	1
+ 143              		.weak	HAL_InitTick
+ 144              		.syntax unified
+ 145              		.thumb
+ 146              		.thumb_func
+ 148              	HAL_InitTick:
+ 149              	.LVL1:
+ 150              	.LFB161:
+ 220:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 221:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 222:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief This function configures the source of the time base.
+ 223:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *        The time source is configured to have 1ms time base with a dedicated
+ 224:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *        Tick interrupt priority.
+ 225:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @note This function is called  automatically at the beginning of program after
+ 226:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *       reset by HAL_Init() or at any time when clock is reconfigured  by HAL_RCC_ClockConfig().
+ 227:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @note In the default implementation, SysTick timer is the source of time base.
+ 228:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *       It is used to generate interrupts at regular time intervals.
+ 229:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *       Care must be taken if HAL_Delay() is called from a peripheral ISR process,
+ 230:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *       The SysTick interrupt must have higher priority (numerically lower)
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 8
+
+
+ 231:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *       than the peripheral interrupt. Otherwise the caller ISR process will be blocked.
+ 232:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *       The function is declared as __weak  to be overwritten  in case of other
+ 233:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *       implementation  in user file.
+ 234:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @param TickPriority: Tick interrupt priority.
+ 235:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval HAL status
+ 236:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 237:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** __weak HAL_StatusTypeDef HAL_InitTick(uint32_t TickPriority)
+ 238:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ 151              		.loc 1 238 1 is_stmt 1 view -0
+ 152              		.cfi_startproc
+ 153              		@ args = 0, pretend = 0, frame = 0
+ 154              		@ frame_needed = 0, uses_anonymous_args = 0
+ 155              		.loc 1 238 1 is_stmt 0 view .LVU31
+ 156 0000 38B5     		push	{r3, r4, r5, lr}
+ 157              	.LCFI1:
+ 158              		.cfi_def_cfa_offset 16
+ 159              		.cfi_offset 3, -16
+ 160              		.cfi_offset 4, -12
+ 161              		.cfi_offset 5, -8
+ 162              		.cfi_offset 14, -4
+ 239:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   uint32_t ticknumber = 0U;
+ 163              		.loc 1 239 3 is_stmt 1 view .LVU32
+ 164              	.LVL2:
+ 240:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   uint32_t systicksel;
+ 165              		.loc 1 240 3 view .LVU33
+ 241:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 242:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   /* Check uwTickFreq for MisraC 2012 (even if uwTickFreq is a enum type that don't take the value 
+ 243:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   if ((uint32_t)uwTickFreq == 0UL)
+ 166              		.loc 1 243 3 view .LVU34
+ 167              		.loc 1 243 28 is_stmt 0 view .LVU35
+ 168 0002 274B     		ldr	r3, .L17
+ 169 0004 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 170              		.loc 1 243 6 view .LVU36
+ 171 0006 002A     		cmp	r2, #0
+ 172 0008 47D0     		beq	.L13
+ 173 000a 0546     		mov	r5, r0
+ 244:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   {
+ 245:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     return HAL_ERROR;
+ 246:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   }
+ 247:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 248:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   /* Check Clock source to calculate the tickNumber */
+ 249:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   if (READ_BIT(SysTick->CTRL, SysTick_CTRL_CLKSOURCE_Msk) == SysTick_CTRL_CLKSOURCE_Msk)
+ 174              		.loc 1 249 3 is_stmt 1 view .LVU37
+ 175              		.loc 1 249 7 is_stmt 0 view .LVU38
+ 176 000c 4FF0E023 		mov	r3, #-536813568
+ 177 0010 1C69     		ldr	r4, [r3, #16]
+ 178              		.loc 1 249 6 view .LVU39
+ 179 0012 14F00404 		ands	r4, r4, #4
+ 180 0016 0DD0     		beq	.L9
+ 250:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   {
+ 251:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     /* HCLK selected as SysTick clock source */
+ 252:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     ticknumber = SystemCoreClock / (1000UL / (uint32_t)uwTickFreq);
+ 181              		.loc 1 252 5 is_stmt 1 view .LVU40
+ 182              		.loc 1 252 34 is_stmt 0 view .LVU41
+ 183 0018 224B     		ldr	r3, .L17+4
+ 184 001a 1B68     		ldr	r3, [r3]
+ 185              		.loc 1 252 44 view .LVU42
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 9
+
+
+ 186 001c 4FF47A74 		mov	r4, #1000
+ 187 0020 B4FBF2F2 		udiv	r2, r4, r2
+ 188              		.loc 1 252 16 view .LVU43
+ 189 0024 B3FBF2F4 		udiv	r4, r3, r2
+ 190              	.LVL3:
+ 191              	.L10:
+ 253:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   }
+ 254:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   else
+ 255:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   {
+ 256:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     systicksel = HAL_SYSTICK_GetCLKSourceConfig();
+ 257:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     switch (systicksel)
+ 258:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     {
+ 259:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****       /* HCLK_DIV8 selected as SysTick clock source */
+ 260:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****       case SYSTICK_CLKSOURCE_HCLK_DIV8:
+ 261:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****         /* Calculate tick value */
+ 262:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****         ticknumber = (SystemCoreClock / (8000UL / (uint32_t)uwTickFreq));
+ 263:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****         break;
+ 264:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****       /* LSI selected as SysTick clock source */
+ 265:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****       case SYSTICK_CLKSOURCE_LSI:
+ 266:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****         /* Calculate tick value */
+ 267:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****         ticknumber = (LSI_VALUE / (1000UL / (uint32_t)uwTickFreq));
+ 268:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****         break;
+ 269:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****       /* LSE selected as SysTick clock source */
+ 270:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****       case SYSTICK_CLKSOURCE_LSE:
+ 271:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****         /* Calculate tick value */
+ 272:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****         ticknumber = (LSE_VALUE / (1000UL / (uint32_t)uwTickFreq));
+ 273:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****         break;
+ 274:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****       default:
+ 275:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****         /* Nothing to do */
+ 276:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****         break;
+ 277:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     }
+ 278:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   }
+ 279:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 280:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   /* Configure the SysTick to have interrupt in 1ms time basis*/
+ 281:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   if (HAL_SYSTICK_Config(ticknumber) > 0U)
+ 192              		.loc 1 281 3 is_stmt 1 view .LVU44
+ 193              		.loc 1 281 7 is_stmt 0 view .LVU45
+ 194 0028 2046     		mov	r0, r4
+ 195 002a FFF7FEFF 		bl	HAL_SYSTICK_Config
+ 196              	.LVL4:
+ 197              		.loc 1 281 6 view .LVU46
+ 198 002e 50B3     		cbz	r0, .L16
+ 282:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   {
+ 283:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     return HAL_ERROR;
+ 199              		.loc 1 283 12 view .LVU47
+ 200 0030 0120     		movs	r0, #1
+ 201 0032 33E0     		b	.L8
+ 202              	.LVL5:
+ 203              	.L9:
+ 256:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     switch (systicksel)
+ 204              		.loc 1 256 5 is_stmt 1 view .LVU48
+ 256:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     switch (systicksel)
+ 205              		.loc 1 256 18 is_stmt 0 view .LVU49
+ 206 0034 FFF7FEFF 		bl	HAL_SYSTICK_GetCLKSourceConfig
+ 207              	.LVL6:
+ 257:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     {
+ 208              		.loc 1 257 5 is_stmt 1 view .LVU50
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 10
+
+
+ 209 0038 0128     		cmp	r0, #1
+ 210 003a 0ED0     		beq	.L11
+ 211 003c 0228     		cmp	r0, #2
+ 212 003e 17D0     		beq	.L12
+ 213 0040 0028     		cmp	r0, #0
+ 214 0042 F1D1     		bne	.L10
+ 262:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****         break;
+ 215              		.loc 1 262 9 view .LVU51
+ 262:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****         break;
+ 216              		.loc 1 262 39 is_stmt 0 view .LVU52
+ 217 0044 174B     		ldr	r3, .L17+4
+ 218 0046 1B68     		ldr	r3, [r3]
+ 262:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****         break;
+ 219              		.loc 1 262 51 view .LVU53
+ 220 0048 154A     		ldr	r2, .L17
+ 221 004a 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
+ 262:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****         break;
+ 222              		.loc 1 262 49 view .LVU54
+ 223 004c 4FF4FA54 		mov	r4, #8000
+ 224 0050 B4FBF2F4 		udiv	r4, r4, r2
+ 262:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****         break;
+ 225              		.loc 1 262 20 view .LVU55
+ 226 0054 B3FBF4F4 		udiv	r4, r3, r4
+ 227              	.LVL7:
+ 263:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****       /* LSI selected as SysTick clock source */
+ 228              		.loc 1 263 9 is_stmt 1 view .LVU56
+ 229 0058 E6E7     		b	.L10
+ 230              	.LVL8:
+ 231              	.L11:
+ 267:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****         break;
+ 232              		.loc 1 267 9 view .LVU57
+ 267:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****         break;
+ 233              		.loc 1 267 45 is_stmt 0 view .LVU58
+ 234 005a 114B     		ldr	r3, .L17
+ 235 005c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 267:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****         break;
+ 236              		.loc 1 267 43 view .LVU59
+ 237 005e 4FF47A74 		mov	r4, #1000
+ 238 0062 B4FBF3F4 		udiv	r4, r4, r3
+ 267:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****         break;
+ 239              		.loc 1 267 20 view .LVU60
+ 240 0066 4FF4FA43 		mov	r3, #32000
+ 241 006a B3FBF4F4 		udiv	r4, r3, r4
+ 242              	.LVL9:
+ 268:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****       /* LSE selected as SysTick clock source */
+ 243              		.loc 1 268 9 is_stmt 1 view .LVU61
+ 244 006e DBE7     		b	.L10
+ 245              	.LVL10:
+ 246              	.L12:
+ 272:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****         break;
+ 247              		.loc 1 272 9 view .LVU62
+ 272:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****         break;
+ 248              		.loc 1 272 45 is_stmt 0 view .LVU63
+ 249 0070 0B4B     		ldr	r3, .L17
+ 250 0072 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 272:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****         break;
+ 251              		.loc 1 272 43 view .LVU64
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 11
+
+
+ 252 0074 4FF47A74 		mov	r4, #1000
+ 253 0078 B4FBF3F4 		udiv	r4, r4, r3
+ 272:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****         break;
+ 254              		.loc 1 272 20 view .LVU65
+ 255 007c 4FF40043 		mov	r3, #32768
+ 256 0080 B3FBF4F4 		udiv	r4, r3, r4
+ 257              	.LVL11:
+ 273:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****       default:
+ 258              		.loc 1 273 9 is_stmt 1 view .LVU66
+ 259 0084 D0E7     		b	.L10
+ 260              	.LVL12:
+ 261              	.L16:
+ 284:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   }
+ 285:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 286:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   /* Configure the SysTick IRQ priority */
+ 287:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   HAL_NVIC_SetPriority(SysTick_IRQn, TickPriority, 0U);
+ 262              		.loc 1 287 3 view .LVU67
+ 263 0086 0022     		movs	r2, #0
+ 264 0088 2946     		mov	r1, r5
+ 265 008a 4FF0FF30 		mov	r0, #-1
+ 266 008e FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 267              	.LVL13:
+ 288:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   uwTickPrio = TickPriority;
+ 268              		.loc 1 288 3 view .LVU68
+ 269              		.loc 1 288 14 is_stmt 0 view .LVU69
+ 270 0092 054B     		ldr	r3, .L17+8
+ 271 0094 1D60     		str	r5, [r3]
+ 289:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 290:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   /* Return function status */
+ 291:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   return HAL_OK;
+ 272              		.loc 1 291 3 is_stmt 1 view .LVU70
+ 273              		.loc 1 291 10 is_stmt 0 view .LVU71
+ 274 0096 0020     		movs	r0, #0
+ 275 0098 00E0     		b	.L8
+ 276              	.LVL14:
+ 277              	.L13:
+ 245:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   }
+ 278              		.loc 1 245 12 view .LVU72
+ 279 009a 0120     		movs	r0, #1
+ 280              	.LVL15:
+ 281              	.L8:
+ 292:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 282              		.loc 1 292 1 view .LVU73
+ 283 009c 38BD     		pop	{r3, r4, r5, pc}
+ 284              	.L18:
+ 285 009e 00BF     		.align	2
+ 286              	.L17:
+ 287 00a0 00000000 		.word	.LANCHOR0
+ 288 00a4 00000000 		.word	SystemCoreClock
+ 289 00a8 00000000 		.word	.LANCHOR1
+ 290              		.cfi_endproc
+ 291              	.LFE161:
+ 293              		.section	.text.HAL_Init,"ax",%progbits
+ 294              		.align	1
+ 295              		.global	HAL_Init
+ 296              		.syntax unified
+ 297              		.thumb
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 12
+
+
+ 298              		.thumb_func
+ 300              	HAL_Init:
+ 301              	.LFB157:
+ 141:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   /* Configure Flash prefetch */
+ 302              		.loc 1 141 1 is_stmt 1 view -0
+ 303              		.cfi_startproc
+ 304              		@ args = 0, pretend = 0, frame = 0
+ 305              		@ frame_needed = 0, uses_anonymous_args = 0
+ 306 0000 10B5     		push	{r4, lr}
+ 307              	.LCFI2:
+ 308              		.cfi_def_cfa_offset 8
+ 309              		.cfi_offset 4, -8
+ 310              		.cfi_offset 14, -4
+ 144:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** #endif /* PREFETCH_ENABLE */
+ 311              		.loc 1 144 3 view .LVU75
+ 312 0002 104A     		ldr	r2, .L24
+ 313 0004 1368     		ldr	r3, [r2]
+ 314 0006 43F48073 		orr	r3, r3, #256
+ 315 000a 1360     		str	r3, [r2]
+ 148:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 316              		.loc 1 148 3 view .LVU76
+ 317 000c 0320     		movs	r0, #3
+ 318 000e FFF7FEFF 		bl	HAL_NVIC_SetPriorityGrouping
+ 319              	.LVL16:
+ 151:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 320              		.loc 1 151 3 view .LVU77
+ 151:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 321              		.loc 1 151 21 is_stmt 0 view .LVU78
+ 322 0012 FFF7FEFF 		bl	HAL_RCC_GetSysClockFreq
+ 323              	.LVL17:
+ 151:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 324              		.loc 1 151 68 view .LVU79
+ 325 0016 0C4B     		ldr	r3, .L24+4
+ 326 0018 1B6A     		ldr	r3, [r3, #32]
+ 151:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 327              		.loc 1 151 94 view .LVU80
+ 328 001a 03F00F03 		and	r3, r3, #15
+ 151:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 329              		.loc 1 151 63 view .LVU81
+ 330 001e 0B4A     		ldr	r2, .L24+8
+ 331 0020 D35C     		ldrb	r3, [r2, r3]	@ zero_extendqisi2
+ 151:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 332              		.loc 1 151 47 view .LVU82
+ 333 0022 D840     		lsrs	r0, r0, r3
+ 151:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 334              		.loc 1 151 19 view .LVU83
+ 335 0024 0A4B     		ldr	r3, .L24+12
+ 336 0026 1860     		str	r0, [r3]
+ 154:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 337              		.loc 1 154 3 is_stmt 1 view .LVU84
+ 338 0028 0420     		movs	r0, #4
+ 339 002a FFF7FEFF 		bl	HAL_SYSTICK_CLKSourceConfig
+ 340              	.LVL18:
+ 157:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   {
+ 341              		.loc 1 157 3 view .LVU85
+ 157:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   {
+ 342              		.loc 1 157 7 is_stmt 0 view .LVU86
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 13
+
+
+ 343 002e 0F20     		movs	r0, #15
+ 344 0030 FFF7FEFF 		bl	HAL_InitTick
+ 345              	.LVL19:
+ 157:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   {
+ 346              		.loc 1 157 6 view .LVU87
+ 347 0034 10B1     		cbz	r0, .L23
+ 159:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   }
+ 348              		.loc 1 159 12 view .LVU88
+ 349 0036 0124     		movs	r4, #1
+ 350              	.L20:
+ 167:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 351              		.loc 1 167 1 view .LVU89
+ 352 0038 2046     		mov	r0, r4
+ 353 003a 10BD     		pop	{r4, pc}
+ 354              	.L23:
+ 355 003c 0446     		mov	r4, r0
+ 163:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 356              		.loc 1 163 3 is_stmt 1 view .LVU90
+ 357 003e FFF7FEFF 		bl	HAL_MspInit
+ 358              	.LVL20:
+ 166:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 359              		.loc 1 166 3 view .LVU91
+ 166:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 360              		.loc 1 166 10 is_stmt 0 view .LVU92
+ 361 0042 F9E7     		b	.L20
+ 362              	.L25:
+ 363              		.align	2
+ 364              	.L24:
+ 365 0044 00200240 		.word	1073881088
+ 366 0048 000C0246 		.word	1174539264
+ 367 004c 00000000 		.word	AHBPrescTable
+ 368 0050 00000000 		.word	SystemCoreClock
+ 369              		.cfi_endproc
+ 370              	.LFE157:
+ 372              		.section	.text.HAL_IncTick,"ax",%progbits
+ 373              		.align	1
+ 374              		.weak	HAL_IncTick
+ 375              		.syntax unified
+ 376              		.thumb
+ 377              		.thumb_func
+ 379              	HAL_IncTick:
+ 380              	.LFB162:
+ 293:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 294:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 295:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @}
+ 296:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 297:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 298:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /** @defgroup HAL_Exported_Functions_Group2 HAL Control functions
+ 299:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *  @brief    HAL Control functions
+ 300:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *
+ 301:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** @verbatim
+ 302:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****  ===============================================================================
+ 303:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****                       ##### HAL Control functions #####
+ 304:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****  ===============================================================================
+ 305:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     [..]  This section provides functions allowing to:
+ 306:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****       (+) Provide a tick value in millisecond
+ 307:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****       (+) Provide a blocking delay in millisecond
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 14
+
+
+ 308:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****       (+) Suspend the time base source interrupt
+ 309:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****       (+) Resume the time base source interrupt
+ 310:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****       (+) Get the HAL API driver version
+ 311:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****       (+) Get the device identifier
+ 312:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****       (+) Get the device revision identifier
+ 313:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****       (+) Enable/Disable Debug module during SLEEP mode
+ 314:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****       (+) Enable/Disable Debug module during STOP mode
+ 315:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****       (+) Enable/Disable Debug module during STANDBY mode
+ 316:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 317:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** @endverbatim
+ 318:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @{
+ 319:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 320:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 321:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 322:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief This function is called to increment a global variable "uwTick"
+ 323:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *        used as application time base.
+ 324:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @note In the default implementation, this variable is incremented each 1ms
+ 325:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *       in SysTick ISR.
+ 326:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @note This function is declared as __weak to be overwritten in case of other
+ 327:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *      implementations in user file.
+ 328:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval None
+ 329:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 330:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** __weak void HAL_IncTick(void)
+ 331:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ 381              		.loc 1 331 1 is_stmt 1 view -0
+ 382              		.cfi_startproc
+ 383              		@ args = 0, pretend = 0, frame = 0
+ 384              		@ frame_needed = 0, uses_anonymous_args = 0
+ 385              		@ link register save eliminated.
+ 332:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   uwTick += (uint32_t)uwTickFreq;
+ 386              		.loc 1 332 3 view .LVU94
+ 387              		.loc 1 332 13 is_stmt 0 view .LVU95
+ 388 0000 034B     		ldr	r3, .L27
+ 389 0002 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 390              		.loc 1 332 10 view .LVU96
+ 391 0004 034A     		ldr	r2, .L27+4
+ 392 0006 1168     		ldr	r1, [r2]
+ 393 0008 0B44     		add	r3, r3, r1
+ 394 000a 1360     		str	r3, [r2]
+ 333:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 395              		.loc 1 333 1 view .LVU97
+ 396 000c 7047     		bx	lr
+ 397              	.L28:
+ 398 000e 00BF     		.align	2
+ 399              	.L27:
+ 400 0010 00000000 		.word	.LANCHOR0
+ 401 0014 00000000 		.word	.LANCHOR2
+ 402              		.cfi_endproc
+ 403              	.LFE162:
+ 405              		.section	.text.HAL_GetTick,"ax",%progbits
+ 406              		.align	1
+ 407              		.weak	HAL_GetTick
+ 408              		.syntax unified
+ 409              		.thumb
+ 410              		.thumb_func
+ 412              	HAL_GetTick:
+ 413              	.LFB163:
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 15
+
+
+ 334:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 335:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 336:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief Provides a tick value in millisecond.
+ 337:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @note This function is declared as __weak to be overwritten in case of other
+ 338:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *       implementations in user file.
+ 339:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval tick value
+ 340:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 341:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** __weak uint32_t HAL_GetTick(void)
+ 342:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ 414              		.loc 1 342 1 is_stmt 1 view -0
+ 415              		.cfi_startproc
+ 416              		@ args = 0, pretend = 0, frame = 0
+ 417              		@ frame_needed = 0, uses_anonymous_args = 0
+ 418              		@ link register save eliminated.
+ 343:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   return uwTick;
+ 419              		.loc 1 343 3 view .LVU99
+ 420              		.loc 1 343 10 is_stmt 0 view .LVU100
+ 421 0000 014B     		ldr	r3, .L30
+ 422 0002 1868     		ldr	r0, [r3]
+ 344:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 423              		.loc 1 344 1 view .LVU101
+ 424 0004 7047     		bx	lr
+ 425              	.L31:
+ 426 0006 00BF     		.align	2
+ 427              	.L30:
+ 428 0008 00000000 		.word	.LANCHOR2
+ 429              		.cfi_endproc
+ 430              	.LFE163:
+ 432              		.section	.text.HAL_GetTickPrio,"ax",%progbits
+ 433              		.align	1
+ 434              		.global	HAL_GetTickPrio
+ 435              		.syntax unified
+ 436              		.thumb
+ 437              		.thumb_func
+ 439              	HAL_GetTickPrio:
+ 440              	.LFB164:
+ 345:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 346:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 347:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief This function returns a tick priority.
+ 348:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval tick priority
+ 349:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 350:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** uint32_t HAL_GetTickPrio(void)
+ 351:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ 441              		.loc 1 351 1 is_stmt 1 view -0
+ 442              		.cfi_startproc
+ 443              		@ args = 0, pretend = 0, frame = 0
+ 444              		@ frame_needed = 0, uses_anonymous_args = 0
+ 445              		@ link register save eliminated.
+ 352:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   return uwTickPrio;
+ 446              		.loc 1 352 3 view .LVU103
+ 353:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 447              		.loc 1 353 1 is_stmt 0 view .LVU104
+ 448 0000 014B     		ldr	r3, .L33
+ 449 0002 1868     		ldr	r0, [r3]
+ 450 0004 7047     		bx	lr
+ 451              	.L34:
+ 452 0006 00BF     		.align	2
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 16
+
+
+ 453              	.L33:
+ 454 0008 00000000 		.word	.LANCHOR1
+ 455              		.cfi_endproc
+ 456              	.LFE164:
+ 458              		.section	.text.HAL_SetTickFreq,"ax",%progbits
+ 459              		.align	1
+ 460              		.global	HAL_SetTickFreq
+ 461              		.syntax unified
+ 462              		.thumb
+ 463              		.thumb_func
+ 465              	HAL_SetTickFreq:
+ 466              	.LVL21:
+ 467              	.LFB165:
+ 354:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 355:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 356:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief Set new tick Freq.
+ 357:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval Status
+ 358:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 359:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** HAL_StatusTypeDef HAL_SetTickFreq(HAL_TickFreqTypeDef Freq)
+ 360:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ 468              		.loc 1 360 1 is_stmt 1 view -0
+ 469              		.cfi_startproc
+ 470              		@ args = 0, pretend = 0, frame = 0
+ 471              		@ frame_needed = 0, uses_anonymous_args = 0
+ 472              		.loc 1 360 1 is_stmt 0 view .LVU106
+ 473 0000 10B5     		push	{r4, lr}
+ 474              	.LCFI3:
+ 475              		.cfi_def_cfa_offset 8
+ 476              		.cfi_offset 4, -8
+ 477              		.cfi_offset 14, -4
+ 361:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   HAL_StatusTypeDef status  = HAL_OK;
+ 478              		.loc 1 361 3 is_stmt 1 view .LVU107
+ 479              	.LVL22:
+ 362:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   HAL_TickFreqTypeDef prevTickFreq;
+ 480              		.loc 1 362 3 view .LVU108
+ 363:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 364:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   assert_param(IS_TICKFREQ(Freq));
+ 481              		.loc 1 364 3 view .LVU109
+ 365:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 366:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   if (uwTickFreq != Freq)
+ 482              		.loc 1 366 3 view .LVU110
+ 483              		.loc 1 366 18 is_stmt 0 view .LVU111
+ 484 0002 084B     		ldr	r3, .L40
+ 485 0004 1C78     		ldrb	r4, [r3]	@ zero_extendqisi2
+ 486              		.loc 1 366 6 view .LVU112
+ 487 0006 8442     		cmp	r4, r0
+ 488 0008 01D1     		bne	.L39
+ 361:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   HAL_TickFreqTypeDef prevTickFreq;
+ 489              		.loc 1 361 21 view .LVU113
+ 490 000a 0020     		movs	r0, #0
+ 491              	.LVL23:
+ 492              	.L36:
+ 367:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   {
+ 368:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 369:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     /* Back up uwTickFreq frequency */
+ 370:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     prevTickFreq = uwTickFreq;
+ 371:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 17
+
+
+ 372:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     /* Update uwTickFreq global variable used by HAL_InitTick() */
+ 373:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     uwTickFreq = Freq;
+ 374:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 375:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     /* Apply the new tick Freq  */
+ 376:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     status = HAL_InitTick(uwTickPrio);
+ 377:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     if (status != HAL_OK)
+ 378:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     {
+ 379:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****       /* Restore previous tick frequency */
+ 380:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****       uwTickFreq = prevTickFreq;
+ 381:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     }
+ 382:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   }
+ 383:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 384:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   return status;
+ 493              		.loc 1 384 3 is_stmt 1 view .LVU114
+ 385:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 494              		.loc 1 385 1 is_stmt 0 view .LVU115
+ 495 000c 10BD     		pop	{r4, pc}
+ 496              	.LVL24:
+ 497              	.L39:
+ 370:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 498              		.loc 1 370 5 is_stmt 1 view .LVU116
+ 373:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 499              		.loc 1 373 5 view .LVU117
+ 373:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 500              		.loc 1 373 16 is_stmt 0 view .LVU118
+ 501 000e 1870     		strb	r0, [r3]
+ 376:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     if (status != HAL_OK)
+ 502              		.loc 1 376 5 is_stmt 1 view .LVU119
+ 376:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     if (status != HAL_OK)
+ 503              		.loc 1 376 14 is_stmt 0 view .LVU120
+ 504 0010 054B     		ldr	r3, .L40+4
+ 505 0012 1868     		ldr	r0, [r3]
+ 506              	.LVL25:
+ 376:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     if (status != HAL_OK)
+ 507              		.loc 1 376 14 view .LVU121
+ 508 0014 FFF7FEFF 		bl	HAL_InitTick
+ 509              	.LVL26:
+ 377:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     {
+ 510              		.loc 1 377 5 is_stmt 1 view .LVU122
+ 377:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     {
+ 511              		.loc 1 377 8 is_stmt 0 view .LVU123
+ 512 0018 0028     		cmp	r0, #0
+ 513 001a F7D0     		beq	.L36
+ 380:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     }
+ 514              		.loc 1 380 7 is_stmt 1 view .LVU124
+ 380:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     }
+ 515              		.loc 1 380 18 is_stmt 0 view .LVU125
+ 516 001c 014B     		ldr	r3, .L40
+ 517 001e 1C70     		strb	r4, [r3]
+ 518 0020 F4E7     		b	.L36
+ 519              	.L41:
+ 520 0022 00BF     		.align	2
+ 521              	.L40:
+ 522 0024 00000000 		.word	.LANCHOR0
+ 523 0028 00000000 		.word	.LANCHOR1
+ 524              		.cfi_endproc
+ 525              	.LFE165:
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 18
+
+
+ 527              		.section	.text.HAL_GetTickFreq,"ax",%progbits
+ 528              		.align	1
+ 529              		.global	HAL_GetTickFreq
+ 530              		.syntax unified
+ 531              		.thumb
+ 532              		.thumb_func
+ 534              	HAL_GetTickFreq:
+ 535              	.LFB166:
+ 386:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 387:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 388:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief Return tick frequency.
+ 389:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval Tick frequency.
+ 390:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *         Value of @ref HAL_TickFreqTypeDef.
+ 391:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 392:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** HAL_TickFreqTypeDef HAL_GetTickFreq(void)
+ 393:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ 536              		.loc 1 393 1 is_stmt 1 view -0
+ 537              		.cfi_startproc
+ 538              		@ args = 0, pretend = 0, frame = 0
+ 539              		@ frame_needed = 0, uses_anonymous_args = 0
+ 540              		@ link register save eliminated.
+ 394:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   return uwTickFreq;
+ 541              		.loc 1 394 3 view .LVU127
+ 395:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 542              		.loc 1 395 1 is_stmt 0 view .LVU128
+ 543 0000 014B     		ldr	r3, .L43
+ 544 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 545 0004 7047     		bx	lr
+ 546              	.L44:
+ 547 0006 00BF     		.align	2
+ 548              	.L43:
+ 549 0008 00000000 		.word	.LANCHOR0
+ 550              		.cfi_endproc
+ 551              	.LFE166:
+ 553              		.section	.text.HAL_Delay,"ax",%progbits
+ 554              		.align	1
+ 555              		.weak	HAL_Delay
+ 556              		.syntax unified
+ 557              		.thumb
+ 558              		.thumb_func
+ 560              	HAL_Delay:
+ 561              	.LVL27:
+ 562              	.LFB167:
+ 396:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 397:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 398:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief This function provides minimum delay (in milliseconds) based
+ 399:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *        on variable incremented.
+ 400:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @note In the default implementation , SysTick timer is the source of time base.
+ 401:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *       It is used to generate interrupts at regular time intervals where uwTick
+ 402:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *       is incremented.
+ 403:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @note This function is declared as __weak to be overwritten in case of other
+ 404:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *       implementations in user file.
+ 405:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @param Delay  specifies the delay time length, in milliseconds.
+ 406:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval None
+ 407:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 408:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** __weak void HAL_Delay(uint32_t Delay)
+ 409:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 19
+
+
+ 563              		.loc 1 409 1 is_stmt 1 view -0
+ 564              		.cfi_startproc
+ 565              		@ args = 0, pretend = 0, frame = 0
+ 566              		@ frame_needed = 0, uses_anonymous_args = 0
+ 567              		.loc 1 409 1 is_stmt 0 view .LVU130
+ 568 0000 38B5     		push	{r3, r4, r5, lr}
+ 569              	.LCFI4:
+ 570              		.cfi_def_cfa_offset 16
+ 571              		.cfi_offset 3, -16
+ 572              		.cfi_offset 4, -12
+ 573              		.cfi_offset 5, -8
+ 574              		.cfi_offset 14, -4
+ 575 0002 0446     		mov	r4, r0
+ 410:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   uint32_t tickstart = HAL_GetTick();
+ 576              		.loc 1 410 3 is_stmt 1 view .LVU131
+ 577              		.loc 1 410 24 is_stmt 0 view .LVU132
+ 578 0004 FFF7FEFF 		bl	HAL_GetTick
+ 579              	.LVL28:
+ 580              		.loc 1 410 24 view .LVU133
+ 581 0008 0546     		mov	r5, r0
+ 582              	.LVL29:
+ 411:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   uint32_t wait = Delay;
+ 583              		.loc 1 411 3 is_stmt 1 view .LVU134
+ 412:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 413:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   /* Add a freq to guarantee minimum wait */
+ 414:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   if (wait < HAL_MAX_DELAY)
+ 584              		.loc 1 414 3 view .LVU135
+ 585              		.loc 1 414 6 is_stmt 0 view .LVU136
+ 586 000a B4F1FF3F 		cmp	r4, #-1
+ 587 000e 02D0     		beq	.L47
+ 415:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   {
+ 416:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     wait += (uint32_t)(uwTickFreq);
+ 588              		.loc 1 416 5 is_stmt 1 view .LVU137
+ 589              		.loc 1 416 13 is_stmt 0 view .LVU138
+ 590 0010 044B     		ldr	r3, .L49
+ 591 0012 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 592              		.loc 1 416 10 view .LVU139
+ 593 0014 1C44     		add	r4, r4, r3
+ 594              	.LVL30:
+ 595              	.L47:
+ 417:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   }
+ 418:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 419:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   while ((HAL_GetTick() - tickstart) < wait)
+ 420:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   {
+ 421:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   }
+ 596              		.loc 1 421 3 is_stmt 1 discriminator 1 view .LVU140
+ 419:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   {
+ 597              		.loc 1 419 9 discriminator 1 view .LVU141
+ 419:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   {
+ 598              		.loc 1 419 11 is_stmt 0 discriminator 1 view .LVU142
+ 599 0016 FFF7FEFF 		bl	HAL_GetTick
+ 600              	.LVL31:
+ 419:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   {
+ 601              		.loc 1 419 25 discriminator 1 view .LVU143
+ 602 001a 401B     		subs	r0, r0, r5
+ 419:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   {
+ 603              		.loc 1 419 9 discriminator 1 view .LVU144
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 20
+
+
+ 604 001c A042     		cmp	r0, r4
+ 605 001e FAD3     		bcc	.L47
+ 422:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 606              		.loc 1 422 1 view .LVU145
+ 607 0020 38BD     		pop	{r3, r4, r5, pc}
+ 608              	.LVL32:
+ 609              	.L50:
+ 610              		.loc 1 422 1 view .LVU146
+ 611 0022 00BF     		.align	2
+ 612              	.L49:
+ 613 0024 00000000 		.word	.LANCHOR0
+ 614              		.cfi_endproc
+ 615              	.LFE167:
+ 617              		.section	.text.HAL_SuspendTick,"ax",%progbits
+ 618              		.align	1
+ 619              		.weak	HAL_SuspendTick
+ 620              		.syntax unified
+ 621              		.thumb
+ 622              		.thumb_func
+ 624              	HAL_SuspendTick:
+ 625              	.LFB168:
+ 423:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 424:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 425:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief Suspend Tick increment.
+ 426:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @note In the default implementation , SysTick timer is the source of time base. It is
+ 427:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *       used to generate interrupts at regular time intervals. Once HAL_SuspendTick()
+ 428:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *       is called, the SysTick interrupt will be disabled and so Tick increment
+ 429:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *       is suspended.
+ 430:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @note This function is declared as __weak to be overwritten in case of other
+ 431:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *       implementations in user file.
+ 432:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval None
+ 433:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 434:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** __weak void HAL_SuspendTick(void)
+ 435:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ 626              		.loc 1 435 1 is_stmt 1 view -0
+ 627              		.cfi_startproc
+ 628              		@ args = 0, pretend = 0, frame = 0
+ 629              		@ frame_needed = 0, uses_anonymous_args = 0
+ 630              		@ link register save eliminated.
+ 436:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   /* Disable SysTick Interrupt */
+ 437:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   SysTick->CTRL &= ~SysTick_CTRL_TICKINT_Msk;
+ 631              		.loc 1 437 3 view .LVU148
+ 632              		.loc 1 437 17 is_stmt 0 view .LVU149
+ 633 0000 4FF0E022 		mov	r2, #-536813568
+ 634 0004 1369     		ldr	r3, [r2, #16]
+ 635 0006 23F00203 		bic	r3, r3, #2
+ 636 000a 1361     		str	r3, [r2, #16]
+ 438:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 637              		.loc 1 438 1 view .LVU150
+ 638 000c 7047     		bx	lr
+ 639              		.cfi_endproc
+ 640              	.LFE168:
+ 642              		.section	.text.HAL_ResumeTick,"ax",%progbits
+ 643              		.align	1
+ 644              		.weak	HAL_ResumeTick
+ 645              		.syntax unified
+ 646              		.thumb
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 21
+
+
+ 647              		.thumb_func
+ 649              	HAL_ResumeTick:
+ 650              	.LFB169:
+ 439:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 440:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 441:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief Resume Tick increment.
+ 442:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @note In the default implementation , SysTick timer is the source of time base. It is
+ 443:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *       used to generate interrupts at regular time intervals. Once HAL_ResumeTick()
+ 444:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *       is called, the SysTick interrupt will be enabled and so Tick increment
+ 445:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *       is resumed.
+ 446:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @note This function is declared as __weak to be overwritten in case of other
+ 447:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *       implementations in user file.
+ 448:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval None
+ 449:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 450:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** __weak void HAL_ResumeTick(void)
+ 451:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ 651              		.loc 1 451 1 is_stmt 1 view -0
+ 652              		.cfi_startproc
+ 653              		@ args = 0, pretend = 0, frame = 0
+ 654              		@ frame_needed = 0, uses_anonymous_args = 0
+ 655              		@ link register save eliminated.
+ 452:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   /* Enable SysTick Interrupt */
+ 453:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   SysTick->CTRL  |= SysTick_CTRL_TICKINT_Msk;
+ 656              		.loc 1 453 3 view .LVU152
+ 657              		.loc 1 453 18 is_stmt 0 view .LVU153
+ 658 0000 4FF0E022 		mov	r2, #-536813568
+ 659 0004 1369     		ldr	r3, [r2, #16]
+ 660 0006 43F00203 		orr	r3, r3, #2
+ 661 000a 1361     		str	r3, [r2, #16]
+ 454:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 662              		.loc 1 454 1 view .LVU154
+ 663 000c 7047     		bx	lr
+ 664              		.cfi_endproc
+ 665              	.LFE169:
+ 667              		.section	.text.HAL_GetHalVersion,"ax",%progbits
+ 668              		.align	1
+ 669              		.global	HAL_GetHalVersion
+ 670              		.syntax unified
+ 671              		.thumb
+ 672              		.thumb_func
+ 674              	HAL_GetHalVersion:
+ 675              	.LFB170:
+ 455:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 456:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 457:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief  Returns the HAL revision
+ 458:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval version : 0xXYZR (8bits for each decimal, R for RC)
+ 459:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 460:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** uint32_t HAL_GetHalVersion(void)
+ 461:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ 676              		.loc 1 461 1 is_stmt 1 view -0
+ 677              		.cfi_startproc
+ 678              		@ args = 0, pretend = 0, frame = 0
+ 679              		@ frame_needed = 0, uses_anonymous_args = 0
+ 680              		@ link register save eliminated.
+ 462:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   return __STM32U5xx_HAL_VERSION;
+ 681              		.loc 1 462 3 view .LVU156
+ 463:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 22
+
+
+ 682              		.loc 1 463 1 is_stmt 0 view .LVU157
+ 683 0000 0048     		ldr	r0, .L54
+ 684 0002 7047     		bx	lr
+ 685              	.L55:
+ 686              		.align	2
+ 687              	.L54:
+ 688 0004 00020601 		.word	17170944
+ 689              		.cfi_endproc
+ 690              	.LFE170:
+ 692              		.section	.text.HAL_GetREVID,"ax",%progbits
+ 693              		.align	1
+ 694              		.global	HAL_GetREVID
+ 695              		.syntax unified
+ 696              		.thumb
+ 697              		.thumb_func
+ 699              	HAL_GetREVID:
+ 700              	.LFB171:
+ 464:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 465:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 466:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief  Returns the device revision identifier.
+ 467:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval Device revision identifier
+ 468:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 469:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** uint32_t HAL_GetREVID(void)
+ 470:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ 701              		.loc 1 470 1 is_stmt 1 view -0
+ 702              		.cfi_startproc
+ 703              		@ args = 0, pretend = 0, frame = 0
+ 704              		@ frame_needed = 0, uses_anonymous_args = 0
+ 705              		@ link register save eliminated.
+ 471:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   return ((DBGMCU->IDCODE & DBGMCU_IDCODE_REV_ID) >> 16);
+ 706              		.loc 1 471 3 view .LVU159
+ 707              		.loc 1 471 18 is_stmt 0 view .LVU160
+ 708 0000 014B     		ldr	r3, .L57
+ 709 0002 1868     		ldr	r0, [r3]
+ 472:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 710              		.loc 1 472 1 view .LVU161
+ 711 0004 000C     		lsrs	r0, r0, #16
+ 712 0006 7047     		bx	lr
+ 713              	.L58:
+ 714              		.align	2
+ 715              	.L57:
+ 716 0008 004004E0 		.word	-536592384
+ 717              		.cfi_endproc
+ 718              	.LFE171:
+ 720              		.section	.text.HAL_GetDEVID,"ax",%progbits
+ 721              		.align	1
+ 722              		.global	HAL_GetDEVID
+ 723              		.syntax unified
+ 724              		.thumb
+ 725              		.thumb_func
+ 727              	HAL_GetDEVID:
+ 728              	.LFB172:
+ 473:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 474:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 475:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief  Returns the device identifier.
+ 476:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval Device identifier
+ 477:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 23
+
+
+ 478:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** uint32_t HAL_GetDEVID(void)
+ 479:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ 729              		.loc 1 479 1 is_stmt 1 view -0
+ 730              		.cfi_startproc
+ 731              		@ args = 0, pretend = 0, frame = 0
+ 732              		@ frame_needed = 0, uses_anonymous_args = 0
+ 733              		@ link register save eliminated.
+ 480:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   return (DBGMCU->IDCODE & DBGMCU_IDCODE_DEV_ID);
+ 734              		.loc 1 480 3 view .LVU163
+ 735              		.loc 1 480 17 is_stmt 0 view .LVU164
+ 736 0000 024B     		ldr	r3, .L60
+ 737 0002 1868     		ldr	r0, [r3]
+ 481:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 738              		.loc 1 481 1 view .LVU165
+ 739 0004 C0F30B00 		ubfx	r0, r0, #0, #12
+ 740 0008 7047     		bx	lr
+ 741              	.L61:
+ 742 000a 00BF     		.align	2
+ 743              	.L60:
+ 744 000c 004004E0 		.word	-536592384
+ 745              		.cfi_endproc
+ 746              	.LFE172:
+ 748              		.section	.text.HAL_GetUIDw0,"ax",%progbits
+ 749              		.align	1
+ 750              		.global	HAL_GetUIDw0
+ 751              		.syntax unified
+ 752              		.thumb
+ 753              		.thumb_func
+ 755              	HAL_GetUIDw0:
+ 756              	.LFB173:
+ 482:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 483:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 484:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief  Return the first word of the unique device identifier (UID based on 96 bits)
+ 485:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval Device identifier
+ 486:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 487:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** uint32_t HAL_GetUIDw0(void)
+ 488:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ 757              		.loc 1 488 1 is_stmt 1 view -0
+ 758              		.cfi_startproc
+ 759              		@ args = 0, pretend = 0, frame = 0
+ 760              		@ frame_needed = 0, uses_anonymous_args = 0
+ 761              		@ link register save eliminated.
+ 489:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   return (READ_REG(*((uint32_t *)UID_BASE)));
+ 762              		.loc 1 489 3 view .LVU167
+ 490:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 763              		.loc 1 490 1 is_stmt 0 view .LVU168
+ 764 0000 014B     		ldr	r3, .L63
+ 765 0002 D3F80007 		ldr	r0, [r3, #1792]
+ 766 0006 7047     		bx	lr
+ 767              	.L64:
+ 768              		.align	2
+ 769              	.L63:
+ 770 0008 0000FA0B 		.word	200933376
+ 771              		.cfi_endproc
+ 772              	.LFE173:
+ 774              		.section	.text.HAL_GetUIDw1,"ax",%progbits
+ 775              		.align	1
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 24
+
+
+ 776              		.global	HAL_GetUIDw1
+ 777              		.syntax unified
+ 778              		.thumb
+ 779              		.thumb_func
+ 781              	HAL_GetUIDw1:
+ 782              	.LFB174:
+ 491:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 492:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 493:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief  Return the second word of the unique device identifier (UID based on 96 bits)
+ 494:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval Device identifier
+ 495:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 496:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** uint32_t HAL_GetUIDw1(void)
+ 497:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ 783              		.loc 1 497 1 is_stmt 1 view -0
+ 784              		.cfi_startproc
+ 785              		@ args = 0, pretend = 0, frame = 0
+ 786              		@ frame_needed = 0, uses_anonymous_args = 0
+ 787              		@ link register save eliminated.
+ 498:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   return (READ_REG(*((uint32_t *)(UID_BASE + 4U))));
+ 788              		.loc 1 498 3 view .LVU170
+ 499:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 789              		.loc 1 499 1 is_stmt 0 view .LVU171
+ 790 0000 014B     		ldr	r3, .L66
+ 791 0002 D3F80407 		ldr	r0, [r3, #1796]
+ 792 0006 7047     		bx	lr
+ 793              	.L67:
+ 794              		.align	2
+ 795              	.L66:
+ 796 0008 0000FA0B 		.word	200933376
+ 797              		.cfi_endproc
+ 798              	.LFE174:
+ 800              		.section	.text.HAL_GetUIDw2,"ax",%progbits
+ 801              		.align	1
+ 802              		.global	HAL_GetUIDw2
+ 803              		.syntax unified
+ 804              		.thumb
+ 805              		.thumb_func
+ 807              	HAL_GetUIDw2:
+ 808              	.LFB175:
+ 500:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 501:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 502:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief  Return the third word of the unique device identifier (UID based on 96 bits)
+ 503:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval Device identifier
+ 504:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 505:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** uint32_t HAL_GetUIDw2(void)
+ 506:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ 809              		.loc 1 506 1 is_stmt 1 view -0
+ 810              		.cfi_startproc
+ 811              		@ args = 0, pretend = 0, frame = 0
+ 812              		@ frame_needed = 0, uses_anonymous_args = 0
+ 813              		@ link register save eliminated.
+ 507:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   return (READ_REG(*((uint32_t *)(UID_BASE + 8U))));
+ 814              		.loc 1 507 3 view .LVU173
+ 508:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 815              		.loc 1 508 1 is_stmt 0 view .LVU174
+ 816 0000 014B     		ldr	r3, .L69
+ 817 0002 D3F80807 		ldr	r0, [r3, #1800]
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 25
+
+
+ 818 0006 7047     		bx	lr
+ 819              	.L70:
+ 820              		.align	2
+ 821              	.L69:
+ 822 0008 0000FA0B 		.word	200933376
+ 823              		.cfi_endproc
+ 824              	.LFE175:
+ 826              		.section	.text.HAL_DBGMCU_EnableDBGStopMode,"ax",%progbits
+ 827              		.align	1
+ 828              		.global	HAL_DBGMCU_EnableDBGStopMode
+ 829              		.syntax unified
+ 830              		.thumb
+ 831              		.thumb_func
+ 833              	HAL_DBGMCU_EnableDBGStopMode:
+ 834              	.LFB176:
+ 509:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 510:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 511:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @}
+ 512:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 513:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 514:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 515:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /** @defgroup HAL_Exported_Functions_Group3 HAL Debug functions
+ 516:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *  @brief    HAL Debug functions
+ 517:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *
+ 518:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** @verbatim
+ 519:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****  ===============================================================================
+ 520:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****                       ##### HAL Debug functions #####
+ 521:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****  ===============================================================================
+ 522:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     [..]  This section provides functions allowing to:
+ 523:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****       (+) Enable/Disable Debug module during STOP0/STOP1/STOP2 modes
+ 524:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****       (+) Enable/Disable Debug module during STANDBY mode
+ 525:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 526:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** @endverbatim
+ 527:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @{
+ 528:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 529:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 530:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 531:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief  Enable the Debug Module during STOP0/STOP1/STOP2 modes.
+ 532:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval None
+ 533:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 534:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** void HAL_DBGMCU_EnableDBGStopMode(void)
+ 535:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ 835              		.loc 1 535 1 is_stmt 1 view -0
+ 836              		.cfi_startproc
+ 837              		@ args = 0, pretend = 0, frame = 0
+ 838              		@ frame_needed = 0, uses_anonymous_args = 0
+ 839              		@ link register save eliminated.
+ 536:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   SET_BIT(DBGMCU->CR, DBGMCU_CR_DBG_STOP);
+ 840              		.loc 1 536 3 view .LVU176
+ 841 0000 024A     		ldr	r2, .L72
+ 842 0002 5368     		ldr	r3, [r2, #4]
+ 843 0004 43F00203 		orr	r3, r3, #2
+ 844 0008 5360     		str	r3, [r2, #4]
+ 537:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 845              		.loc 1 537 1 is_stmt 0 view .LVU177
+ 846 000a 7047     		bx	lr
+ 847              	.L73:
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 26
+
+
+ 848              		.align	2
+ 849              	.L72:
+ 850 000c 004004E0 		.word	-536592384
+ 851              		.cfi_endproc
+ 852              	.LFE176:
+ 854              		.section	.text.HAL_DBGMCU_DisableDBGStopMode,"ax",%progbits
+ 855              		.align	1
+ 856              		.global	HAL_DBGMCU_DisableDBGStopMode
+ 857              		.syntax unified
+ 858              		.thumb
+ 859              		.thumb_func
+ 861              	HAL_DBGMCU_DisableDBGStopMode:
+ 862              	.LFB177:
+ 538:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 539:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 540:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief  Disable the Debug Module during STOP0/STOP1/STOP2 modes.
+ 541:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval None
+ 542:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 543:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** void HAL_DBGMCU_DisableDBGStopMode(void)
+ 544:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ 863              		.loc 1 544 1 is_stmt 1 view -0
+ 864              		.cfi_startproc
+ 865              		@ args = 0, pretend = 0, frame = 0
+ 866              		@ frame_needed = 0, uses_anonymous_args = 0
+ 867              		@ link register save eliminated.
+ 545:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   CLEAR_BIT(DBGMCU->CR, DBGMCU_CR_DBG_STOP);
+ 868              		.loc 1 545 3 view .LVU179
+ 869 0000 024A     		ldr	r2, .L75
+ 870 0002 5368     		ldr	r3, [r2, #4]
+ 871 0004 23F00203 		bic	r3, r3, #2
+ 872 0008 5360     		str	r3, [r2, #4]
+ 546:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 873              		.loc 1 546 1 is_stmt 0 view .LVU180
+ 874 000a 7047     		bx	lr
+ 875              	.L76:
+ 876              		.align	2
+ 877              	.L75:
+ 878 000c 004004E0 		.word	-536592384
+ 879              		.cfi_endproc
+ 880              	.LFE177:
+ 882              		.section	.text.HAL_DBGMCU_EnableDBGStandbyMode,"ax",%progbits
+ 883              		.align	1
+ 884              		.global	HAL_DBGMCU_EnableDBGStandbyMode
+ 885              		.syntax unified
+ 886              		.thumb
+ 887              		.thumb_func
+ 889              	HAL_DBGMCU_EnableDBGStandbyMode:
+ 890              	.LFB178:
+ 547:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 548:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 549:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief  Enable the Debug Module during STANDBY mode.
+ 550:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval None
+ 551:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 552:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** void HAL_DBGMCU_EnableDBGStandbyMode(void)
+ 553:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ 891              		.loc 1 553 1 is_stmt 1 view -0
+ 892              		.cfi_startproc
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 27
+
+
+ 893              		@ args = 0, pretend = 0, frame = 0
+ 894              		@ frame_needed = 0, uses_anonymous_args = 0
+ 895              		@ link register save eliminated.
+ 554:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   SET_BIT(DBGMCU->CR, DBGMCU_CR_DBG_STANDBY);
+ 896              		.loc 1 554 3 view .LVU182
+ 897 0000 024A     		ldr	r2, .L78
+ 898 0002 5368     		ldr	r3, [r2, #4]
+ 899 0004 43F00403 		orr	r3, r3, #4
+ 900 0008 5360     		str	r3, [r2, #4]
+ 555:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 901              		.loc 1 555 1 is_stmt 0 view .LVU183
+ 902 000a 7047     		bx	lr
+ 903              	.L79:
+ 904              		.align	2
+ 905              	.L78:
+ 906 000c 004004E0 		.word	-536592384
+ 907              		.cfi_endproc
+ 908              	.LFE178:
+ 910              		.section	.text.HAL_DBGMCU_DisableDBGStandbyMode,"ax",%progbits
+ 911              		.align	1
+ 912              		.global	HAL_DBGMCU_DisableDBGStandbyMode
+ 913              		.syntax unified
+ 914              		.thumb
+ 915              		.thumb_func
+ 917              	HAL_DBGMCU_DisableDBGStandbyMode:
+ 918              	.LFB179:
+ 556:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 557:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 558:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief  Disable the Debug Module during STANDBY mode.
+ 559:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval None
+ 560:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 561:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** void HAL_DBGMCU_DisableDBGStandbyMode(void)
+ 562:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ 919              		.loc 1 562 1 is_stmt 1 view -0
+ 920              		.cfi_startproc
+ 921              		@ args = 0, pretend = 0, frame = 0
+ 922              		@ frame_needed = 0, uses_anonymous_args = 0
+ 923              		@ link register save eliminated.
+ 563:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   CLEAR_BIT(DBGMCU->CR, DBGMCU_CR_DBG_STANDBY);
+ 924              		.loc 1 563 3 view .LVU185
+ 925 0000 024A     		ldr	r2, .L81
+ 926 0002 5368     		ldr	r3, [r2, #4]
+ 927 0004 23F00403 		bic	r3, r3, #4
+ 928 0008 5360     		str	r3, [r2, #4]
+ 564:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 929              		.loc 1 564 1 is_stmt 0 view .LVU186
+ 930 000a 7047     		bx	lr
+ 931              	.L82:
+ 932              		.align	2
+ 933              	.L81:
+ 934 000c 004004E0 		.word	-536592384
+ 935              		.cfi_endproc
+ 936              	.LFE179:
+ 938              		.section	.text.HAL_SYSCFG_VREFBUF_VoltageScalingConfig,"ax",%progbits
+ 939              		.align	1
+ 940              		.global	HAL_SYSCFG_VREFBUF_VoltageScalingConfig
+ 941              		.syntax unified
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 28
+
+
+ 942              		.thumb
+ 943              		.thumb_func
+ 945              	HAL_SYSCFG_VREFBUF_VoltageScalingConfig:
+ 946              	.LVL33:
+ 947              	.LFB180:
+ 565:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 566:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 567:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @}
+ 568:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 569:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 570:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /** @defgroup HAL_Exported_Functions_Group4 HAL SYSCFG configuration functions
+ 571:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *  @brief    HAL SYSCFG configuration functions
+ 572:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *
+ 573:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** @verbatim
+ 574:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****  ===============================================================================
+ 575:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****                       ##### HAL SYSCFG configuration functions #####
+ 576:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****  ===============================================================================
+ 577:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     [..]  This section provides functions allowing to:
+ 578:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****       (+) Configure the Voltage reference buffer
+ 579:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****       (+) Enable/Disable the Voltage reference buffer
+ 580:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****       (+) Enable/Disable the I/O analog switch voltage booster
+ 581:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 582:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** @endverbatim
+ 583:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @{
+ 584:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 585:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 586:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 587:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief Configure the internal voltage reference buffer voltage scale.
+ 588:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @param  VoltageScaling: specifies the output voltage to achieve
+ 589:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *          This parameter can be one of the following values:
+ 590:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *            @arg SYSCFG_VREFBUF_VOLTAGE_SCALE0: VREF_OUT1 around 1.5 V.
+ 591:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *                                                This requires VDDA equal to or higher than 1.8 V
+ 592:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *            @arg SYSCFG_VREFBUF_VOLTAGE_SCALE1: VREF_OUT1 around 1.8 V.
+ 593:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *                                                This requires VDDA equal to or higher than 2.1 V
+ 594:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *            @arg SYSCFG_VREFBUF_VOLTAGE_SCALE2: VREF_OUT1 around 2.048 V.
+ 595:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *                                                This requires VDDA equal to or higher than 2.4 V
+ 596:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *            @arg SYSCFG_VREFBUF_VOLTAGE_SCALE3: VREF_OUT1 around 2.5 V.
+ 597:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *                                                This requires VDDA equal to or higher than 2.8 V
+ 598:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval None
+ 599:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 600:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** void HAL_SYSCFG_VREFBUF_VoltageScalingConfig(uint32_t VoltageScaling)
+ 601:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ 948              		.loc 1 601 1 is_stmt 1 view -0
+ 949              		.cfi_startproc
+ 950              		@ args = 0, pretend = 0, frame = 0
+ 951              		@ frame_needed = 0, uses_anonymous_args = 0
+ 952              		@ link register save eliminated.
+ 602:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   /* Check the parameters */
+ 603:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   assert_param(IS_SYSCFG_VREFBUF_VOLTAGE_SCALE(VoltageScaling));
+ 953              		.loc 1 603 3 view .LVU188
+ 604:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 605:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   MODIFY_REG(VREFBUF->CSR, VREFBUF_CSR_VRS, VoltageScaling);
+ 954              		.loc 1 605 3 view .LVU189
+ 955 0000 034A     		ldr	r2, .L84
+ 956 0002 1368     		ldr	r3, [r2]
+ 957 0004 23F07003 		bic	r3, r3, #112
+ 958 0008 0343     		orrs	r3, r3, r0
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 29
+
+
+ 959 000a 1360     		str	r3, [r2]
+ 606:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 960              		.loc 1 606 1 is_stmt 0 view .LVU190
+ 961 000c 7047     		bx	lr
+ 962              	.L85:
+ 963 000e 00BF     		.align	2
+ 964              	.L84:
+ 965 0010 00740046 		.word	1174434816
+ 966              		.cfi_endproc
+ 967              	.LFE180:
+ 969              		.section	.text.HAL_SYSCFG_VREFBUF_HighImpedanceConfig,"ax",%progbits
+ 970              		.align	1
+ 971              		.global	HAL_SYSCFG_VREFBUF_HighImpedanceConfig
+ 972              		.syntax unified
+ 973              		.thumb
+ 974              		.thumb_func
+ 976              	HAL_SYSCFG_VREFBUF_HighImpedanceConfig:
+ 977              	.LVL34:
+ 978              	.LFB181:
+ 607:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 608:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 609:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief Configure the internal voltage reference buffer high impedance mode.
+ 610:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @param  Mode: specifies the high impedance mode
+ 611:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *          This parameter can be one of the following values:
+ 612:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *            @arg SYSCFG_VREFBUF_HIGH_IMPEDANCE_DISABLE: VREF+ pin is internally connect to VREFI
+ 613:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *            @arg SYSCFG_VREFBUF_HIGH_IMPEDANCE_ENABLE: VREF+ pin is high impedance.
+ 614:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval None
+ 615:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 616:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** void HAL_SYSCFG_VREFBUF_HighImpedanceConfig(uint32_t Mode)
+ 617:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ 979              		.loc 1 617 1 is_stmt 1 view -0
+ 980              		.cfi_startproc
+ 981              		@ args = 0, pretend = 0, frame = 0
+ 982              		@ frame_needed = 0, uses_anonymous_args = 0
+ 983              		@ link register save eliminated.
+ 618:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   /* Check the parameters */
+ 619:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   assert_param(IS_SYSCFG_VREFBUF_HIGH_IMPEDANCE(Mode));
+ 984              		.loc 1 619 3 view .LVU192
+ 620:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 621:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   MODIFY_REG(VREFBUF->CSR, VREFBUF_CSR_HIZ, Mode);
+ 985              		.loc 1 621 3 view .LVU193
+ 986 0000 034A     		ldr	r2, .L87
+ 987 0002 1368     		ldr	r3, [r2]
+ 988 0004 23F00203 		bic	r3, r3, #2
+ 989 0008 0343     		orrs	r3, r3, r0
+ 990 000a 1360     		str	r3, [r2]
+ 622:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 991              		.loc 1 622 1 is_stmt 0 view .LVU194
+ 992 000c 7047     		bx	lr
+ 993              	.L88:
+ 994 000e 00BF     		.align	2
+ 995              	.L87:
+ 996 0010 00740046 		.word	1174434816
+ 997              		.cfi_endproc
+ 998              	.LFE181:
+ 1000              		.section	.text.HAL_SYSCFG_VREFBUF_TrimmingConfig,"ax",%progbits
+ 1001              		.align	1
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 30
+
+
+ 1002              		.global	HAL_SYSCFG_VREFBUF_TrimmingConfig
+ 1003              		.syntax unified
+ 1004              		.thumb
+ 1005              		.thumb_func
+ 1007              	HAL_SYSCFG_VREFBUF_TrimmingConfig:
+ 1008              	.LVL35:
+ 1009              	.LFB182:
+ 623:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 624:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 625:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief  Tune the Internal Voltage Reference buffer (VREFBUF).
+ 626:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval None
+ 627:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 628:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** void HAL_SYSCFG_VREFBUF_TrimmingConfig(uint32_t TrimmingValue)
+ 629:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ 1010              		.loc 1 629 1 is_stmt 1 view -0
+ 1011              		.cfi_startproc
+ 1012              		@ args = 0, pretend = 0, frame = 0
+ 1013              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1014              		@ link register save eliminated.
+ 630:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   /* Check the parameters */
+ 631:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   assert_param(IS_SYSCFG_VREFBUF_TRIMMING(TrimmingValue));
+ 1015              		.loc 1 631 3 view .LVU196
+ 632:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 633:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   MODIFY_REG(VREFBUF->CCR, VREFBUF_CCR_TRIM, TrimmingValue);
+ 1016              		.loc 1 633 3 view .LVU197
+ 1017 0000 034A     		ldr	r2, .L90
+ 1018 0002 5368     		ldr	r3, [r2, #4]
+ 1019 0004 23F03F03 		bic	r3, r3, #63
+ 1020 0008 0343     		orrs	r3, r3, r0
+ 1021 000a 5360     		str	r3, [r2, #4]
+ 634:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 1022              		.loc 1 634 1 is_stmt 0 view .LVU198
+ 1023 000c 7047     		bx	lr
+ 1024              	.L91:
+ 1025 000e 00BF     		.align	2
+ 1026              	.L90:
+ 1027 0010 00740046 		.word	1174434816
+ 1028              		.cfi_endproc
+ 1029              	.LFE182:
+ 1031              		.section	.text.HAL_SYSCFG_EnableVREFBUF,"ax",%progbits
+ 1032              		.align	1
+ 1033              		.global	HAL_SYSCFG_EnableVREFBUF
+ 1034              		.syntax unified
+ 1035              		.thumb
+ 1036              		.thumb_func
+ 1038              	HAL_SYSCFG_EnableVREFBUF:
+ 1039              	.LFB183:
+ 635:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 636:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 637:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief  Enable the Internal Voltage Reference buffer (VREFBUF).
+ 638:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval HAL_OK/HAL_TIMEOUT
+ 639:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 640:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** HAL_StatusTypeDef HAL_SYSCFG_EnableVREFBUF(void)
+ 641:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ 1040              		.loc 1 641 1 is_stmt 1 view -0
+ 1041              		.cfi_startproc
+ 1042              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 31
+
+
+ 1043              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1044 0000 10B5     		push	{r4, lr}
+ 1045              	.LCFI5:
+ 1046              		.cfi_def_cfa_offset 8
+ 1047              		.cfi_offset 4, -8
+ 1048              		.cfi_offset 14, -4
+ 642:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   uint32_t  tickstart;
+ 1049              		.loc 1 642 3 view .LVU200
+ 643:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 644:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   SET_BIT(VREFBUF->CSR, VREFBUF_CSR_ENVR);
+ 1050              		.loc 1 644 3 view .LVU201
+ 1051 0002 0B4A     		ldr	r2, .L99
+ 1052 0004 1368     		ldr	r3, [r2]
+ 1053 0006 43F00103 		orr	r3, r3, #1
+ 1054 000a 1360     		str	r3, [r2]
+ 645:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 646:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   /* Get Start Tick*/
+ 647:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   tickstart = HAL_GetTick();
+ 1055              		.loc 1 647 3 view .LVU202
+ 1056              		.loc 1 647 15 is_stmt 0 view .LVU203
+ 1057 000c FFF7FEFF 		bl	HAL_GetTick
+ 1058              	.LVL36:
+ 1059 0010 0446     		mov	r4, r0
+ 1060              	.LVL37:
+ 648:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 649:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   /* Wait for VRR bit  */
+ 650:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   while (READ_BIT(VREFBUF->CSR, VREFBUF_CSR_VRR) == 0UL)
+ 1061              		.loc 1 650 3 is_stmt 1 view .LVU204
+ 1062              	.L93:
+ 1063              		.loc 1 650 9 view .LVU205
+ 1064              		.loc 1 650 10 is_stmt 0 view .LVU206
+ 1065 0012 074B     		ldr	r3, .L99
+ 1066 0014 1B68     		ldr	r3, [r3]
+ 1067              		.loc 1 650 9 view .LVU207
+ 1068 0016 13F0080F 		tst	r3, #8
+ 1069 001a 06D1     		bne	.L98
+ 651:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   {
+ 652:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     if ((HAL_GetTick() - tickstart) > VREFBUF_TIMEOUT_VALUE)
+ 1070              		.loc 1 652 5 is_stmt 1 view .LVU208
+ 1071              		.loc 1 652 10 is_stmt 0 view .LVU209
+ 1072 001c FFF7FEFF 		bl	HAL_GetTick
+ 1073              	.LVL38:
+ 1074              		.loc 1 652 24 view .LVU210
+ 1075 0020 001B     		subs	r0, r0, r4
+ 1076              		.loc 1 652 8 view .LVU211
+ 1077 0022 0A28     		cmp	r0, #10
+ 1078 0024 F5D9     		bls	.L93
+ 653:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     {
+ 654:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****       return HAL_TIMEOUT;
+ 1079              		.loc 1 654 14 view .LVU212
+ 1080 0026 0320     		movs	r0, #3
+ 1081 0028 00E0     		b	.L94
+ 1082              	.L98:
+ 655:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     }
+ 656:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   }
+ 657:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 658:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   return HAL_OK;
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 32
+
+
+ 1083              		.loc 1 658 10 view .LVU213
+ 1084 002a 0020     		movs	r0, #0
+ 1085              	.L94:
+ 659:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 1086              		.loc 1 659 1 view .LVU214
+ 1087 002c 10BD     		pop	{r4, pc}
+ 1088              	.LVL39:
+ 1089              	.L100:
+ 1090              		.loc 1 659 1 view .LVU215
+ 1091 002e 00BF     		.align	2
+ 1092              	.L99:
+ 1093 0030 00740046 		.word	1174434816
+ 1094              		.cfi_endproc
+ 1095              	.LFE183:
+ 1097              		.section	.text.HAL_SYSCFG_DisableVREFBUF,"ax",%progbits
+ 1098              		.align	1
+ 1099              		.global	HAL_SYSCFG_DisableVREFBUF
+ 1100              		.syntax unified
+ 1101              		.thumb
+ 1102              		.thumb_func
+ 1104              	HAL_SYSCFG_DisableVREFBUF:
+ 1105              	.LFB184:
+ 660:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 661:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 662:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief  Disable the Internal Voltage Reference buffer (VREFBUF).
+ 663:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *
+ 664:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval None
+ 665:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 666:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** void HAL_SYSCFG_DisableVREFBUF(void)
+ 667:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ 1106              		.loc 1 667 1 is_stmt 1 view -0
+ 1107              		.cfi_startproc
+ 1108              		@ args = 0, pretend = 0, frame = 0
+ 1109              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1110              		@ link register save eliminated.
+ 668:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   CLEAR_BIT(VREFBUF->CSR, VREFBUF_CSR_ENVR);
+ 1111              		.loc 1 668 3 view .LVU217
+ 1112 0000 024A     		ldr	r2, .L102
+ 1113 0002 1368     		ldr	r3, [r2]
+ 1114 0004 23F00103 		bic	r3, r3, #1
+ 1115 0008 1360     		str	r3, [r2]
+ 669:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 1116              		.loc 1 669 1 is_stmt 0 view .LVU218
+ 1117 000a 7047     		bx	lr
+ 1118              	.L103:
+ 1119              		.align	2
+ 1120              	.L102:
+ 1121 000c 00740046 		.word	1174434816
+ 1122              		.cfi_endproc
+ 1123              	.LFE184:
+ 1125              		.section	.text.HAL_SYSCFG_EnableIOAnalogBooster,"ax",%progbits
+ 1126              		.align	1
+ 1127              		.global	HAL_SYSCFG_EnableIOAnalogBooster
+ 1128              		.syntax unified
+ 1129              		.thumb
+ 1130              		.thumb_func
+ 1132              	HAL_SYSCFG_EnableIOAnalogBooster:
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 33
+
+
+ 1133              	.LFB185:
+ 670:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 671:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 672:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief  Enable the I/O analog switch voltage booster
+ 673:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *
+ 674:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval None
+ 675:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 676:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** void HAL_SYSCFG_EnableIOAnalogBooster(void)
+ 677:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ 1134              		.loc 1 677 1 is_stmt 1 view -0
+ 1135              		.cfi_startproc
+ 1136              		@ args = 0, pretend = 0, frame = 0
+ 1137              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1138              		@ link register save eliminated.
+ 678:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   SET_BIT(SYSCFG->CFGR1, SYSCFG_CFGR1_BOOSTEN);
+ 1139              		.loc 1 678 3 view .LVU220
+ 1140 0000 024A     		ldr	r2, .L105
+ 1141 0002 5368     		ldr	r3, [r2, #4]
+ 1142 0004 43F48073 		orr	r3, r3, #256
+ 1143 0008 5360     		str	r3, [r2, #4]
+ 679:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 1144              		.loc 1 679 1 is_stmt 0 view .LVU221
+ 1145 000a 7047     		bx	lr
+ 1146              	.L106:
+ 1147              		.align	2
+ 1148              	.L105:
+ 1149 000c 00040046 		.word	1174406144
+ 1150              		.cfi_endproc
+ 1151              	.LFE185:
+ 1153              		.section	.text.HAL_SYSCFG_DisableIOAnalogBooster,"ax",%progbits
+ 1154              		.align	1
+ 1155              		.global	HAL_SYSCFG_DisableIOAnalogBooster
+ 1156              		.syntax unified
+ 1157              		.thumb
+ 1158              		.thumb_func
+ 1160              	HAL_SYSCFG_DisableIOAnalogBooster:
+ 1161              	.LFB186:
+ 680:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 681:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 682:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief  Disable the I/O analog switch voltage booster
+ 683:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *
+ 684:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval None
+ 685:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 686:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** void HAL_SYSCFG_DisableIOAnalogBooster(void)
+ 687:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ 1162              		.loc 1 687 1 is_stmt 1 view -0
+ 1163              		.cfi_startproc
+ 1164              		@ args = 0, pretend = 0, frame = 0
+ 1165              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1166              		@ link register save eliminated.
+ 688:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   CLEAR_BIT(SYSCFG->CFGR1, SYSCFG_CFGR1_BOOSTEN);
+ 1167              		.loc 1 688 3 view .LVU223
+ 1168 0000 024A     		ldr	r2, .L108
+ 1169 0002 5368     		ldr	r3, [r2, #4]
+ 1170 0004 23F48073 		bic	r3, r3, #256
+ 1171 0008 5360     		str	r3, [r2, #4]
+ 689:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 34
+
+
+ 1172              		.loc 1 689 1 is_stmt 0 view .LVU224
+ 1173 000a 7047     		bx	lr
+ 1174              	.L109:
+ 1175              		.align	2
+ 1176              	.L108:
+ 1177 000c 00040046 		.word	1174406144
+ 1178              		.cfi_endproc
+ 1179              	.LFE186:
+ 1181              		.section	.text.HAL_SYSCFG_EnableIOAnalogVoltageSelection,"ax",%progbits
+ 1182              		.align	1
+ 1183              		.global	HAL_SYSCFG_EnableIOAnalogVoltageSelection
+ 1184              		.syntax unified
+ 1185              		.thumb
+ 1186              		.thumb_func
+ 1188              	HAL_SYSCFG_EnableIOAnalogVoltageSelection:
+ 1189              	.LFB187:
+ 690:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 691:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 692:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief  Enable the I/O analog switch voltage selection
+ 693:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *
+ 694:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval None
+ 695:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 696:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** void HAL_SYSCFG_EnableIOAnalogVoltageSelection(void)
+ 697:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ 1190              		.loc 1 697 1 is_stmt 1 view -0
+ 1191              		.cfi_startproc
+ 1192              		@ args = 0, pretend = 0, frame = 0
+ 1193              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1194              		@ link register save eliminated.
+ 698:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   SET_BIT(SYSCFG->CFGR1, SYSCFG_CFGR1_ANASWVDD);
+ 1195              		.loc 1 698 3 view .LVU226
+ 1196 0000 024A     		ldr	r2, .L111
+ 1197 0002 5368     		ldr	r3, [r2, #4]
+ 1198 0004 43F40073 		orr	r3, r3, #512
+ 1199 0008 5360     		str	r3, [r2, #4]
+ 699:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 1200              		.loc 1 699 1 is_stmt 0 view .LVU227
+ 1201 000a 7047     		bx	lr
+ 1202              	.L112:
+ 1203              		.align	2
+ 1204              	.L111:
+ 1205 000c 00040046 		.word	1174406144
+ 1206              		.cfi_endproc
+ 1207              	.LFE187:
+ 1209              		.section	.text.HAL_SYSCFG_DisableIOAnalogVoltageSelection,"ax",%progbits
+ 1210              		.align	1
+ 1211              		.global	HAL_SYSCFG_DisableIOAnalogVoltageSelection
+ 1212              		.syntax unified
+ 1213              		.thumb
+ 1214              		.thumb_func
+ 1216              	HAL_SYSCFG_DisableIOAnalogVoltageSelection:
+ 1217              	.LFB188:
+ 700:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 701:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 702:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief  Disable the I/O analog switch voltage selection
+ 703:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *
+ 704:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval None
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 35
+
+
+ 705:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 706:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** void HAL_SYSCFG_DisableIOAnalogVoltageSelection(void)
+ 707:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ 1218              		.loc 1 707 1 is_stmt 1 view -0
+ 1219              		.cfi_startproc
+ 1220              		@ args = 0, pretend = 0, frame = 0
+ 1221              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1222              		@ link register save eliminated.
+ 708:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   CLEAR_BIT(SYSCFG->CFGR1, SYSCFG_CFGR1_ANASWVDD);
+ 1223              		.loc 1 708 3 view .LVU229
+ 1224 0000 024A     		ldr	r2, .L114
+ 1225 0002 5368     		ldr	r3, [r2, #4]
+ 1226 0004 23F40073 		bic	r3, r3, #512
+ 1227 0008 5360     		str	r3, [r2, #4]
+ 709:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 1228              		.loc 1 709 1 is_stmt 0 view .LVU230
+ 1229 000a 7047     		bx	lr
+ 1230              	.L115:
+ 1231              		.align	2
+ 1232              	.L114:
+ 1233 000c 00040046 		.word	1174406144
+ 1234              		.cfi_endproc
+ 1235              	.LFE188:
+ 1237              		.section	.text.HAL_SYSCFG_EnableVddCompensationCell,"ax",%progbits
+ 1238              		.align	1
+ 1239              		.global	HAL_SYSCFG_EnableVddCompensationCell
+ 1240              		.syntax unified
+ 1241              		.thumb
+ 1242              		.thumb_func
+ 1244              	HAL_SYSCFG_EnableVddCompensationCell:
+ 1245              	.LFB189:
+ 710:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 711:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** #if defined(SYSCFG_CFGR1_ENDCAP)
+ 712:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 713:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief  Set decoupling capacitance on HSPI supply.
+ 714:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @rmtoll SYSCFG_CFGR1   ENDCAP   HAL_SYSCFG_SetHSPIDecouplingCapacitance
+ 715:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @param  Capacitance This parameter can be one of the following values:
+ 716:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *         @arg @ref SYSCFG_HSPI_CAPACITANCE_OFF
+ 717:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *         @arg @ref SYSCFG_HSPI_CAPACITANCE_1_DIV_3
+ 718:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *         @arg @ref SYSCFG_HSPI_CAPACITANCE_2_DIV_3
+ 719:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *         @arg @ref SYSCFG_HSPI_CAPACITANCE_FULL
+ 720:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval None
+ 721:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 722:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** void HAL_SYSCFG_SetHSPIDecouplingCapacitance(uint32_t Capacitance)
+ 723:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ 724:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   /* Check the parameters */
+ 725:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   assert_param(IS_SYSCFG_DECOUPLING_CAPACITANCE(Capacitance));
+ 726:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 727:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   MODIFY_REG(SYSCFG->CFGR1, SYSCFG_CFGR1_ENDCAP, Capacitance);
+ 728:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 729:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 730:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 731:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief  Get decoupling capacitance on HSPI supply.
+ 732:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @rmtoll SYSCFG_CFGR1   ENDCAP   HAL_SYSCFG_GetHSPIDecouplingCapacitance
+ 733:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval Returned value can be one of the following values:
+ 734:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *         @arg @ref SYSCFG_HSPI_CAPACITANCE_OFF
+ 735:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *         @arg @ref SYSCFG_HSPI_CAPACITANCE_1_DIV_3
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 36
+
+
+ 736:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *         @arg @ref SYSCFG_HSPI_CAPACITANCE_2_DIV_3
+ 737:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *         @arg @ref SYSCFG_HSPI_CAPACITANCE_FULL
+ 738:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 739:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** uint32_t HAL_SYSCFG_GetHSPIDecouplingCapacitance(void)
+ 740:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ 741:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   return (uint32_t)(READ_BIT(SYSCFG->CFGR1, SYSCFG_CFGR1_ENDCAP));
+ 742:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 743:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** #endif /* SYSCFG_CFGR1_ENDCAP */
+ 744:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 745:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** #if defined(SYSCFG_CFGR1_SRAMCACHED)
+ 746:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 747:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief  Enable the Cacheability of internal SRAMx by DCACHE2
+ 748:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *
+ 749:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval None
+ 750:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 751:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** void HAL_SYSCFG_EnableSRAMCached(void)
+ 752:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ 753:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   SET_BIT(SYSCFG->CFGR1, SYSCFG_CFGR1_SRAMCACHED);
+ 754:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 755:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 756:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 757:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief  Disable the Cacheability of internal SRAMx by DCACHE2
+ 758:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *
+ 759:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval None
+ 760:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 761:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** void HAL_SYSCFG_DisableSRAMCached(void)
+ 762:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ 763:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   CLEAR_BIT(SYSCFG->CFGR1, SYSCFG_CFGR1_SRAMCACHED);
+ 764:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 765:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** #endif /* SYSCFG_CFGR1_SRAMCACHED */
+ 766:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 767:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 768:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief  Enable the Compensation Cell of GPIO supplied by VDD
+ 769:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @rmtoll CCCSR   EN1    HAL_SYSCFG_EnableVddCompensationCell
+ 770:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @note   The vdd compensation cell can be used only when the device supply
+ 771:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *         voltage ranges from 1.71 to 3.6 V
+ 772:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval None
+ 773:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 774:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** void HAL_SYSCFG_EnableVddCompensationCell(void)
+ 775:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ 1246              		.loc 1 775 1 is_stmt 1 view -0
+ 1247              		.cfi_startproc
+ 1248              		@ args = 0, pretend = 0, frame = 0
+ 1249              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1250              		@ link register save eliminated.
+ 776:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   SET_BIT(SYSCFG->CCCSR, SYSCFG_CCCSR_EN1);
+ 1251              		.loc 1 776 3 view .LVU232
+ 1252 0000 024A     		ldr	r2, .L117
+ 1253 0002 D369     		ldr	r3, [r2, #28]
+ 1254 0004 43F00103 		orr	r3, r3, #1
+ 1255 0008 D361     		str	r3, [r2, #28]
+ 777:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 1256              		.loc 1 777 1 is_stmt 0 view .LVU233
+ 1257 000a 7047     		bx	lr
+ 1258              	.L118:
+ 1259              		.align	2
+ 1260              	.L117:
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 37
+
+
+ 1261 000c 00040046 		.word	1174406144
+ 1262              		.cfi_endproc
+ 1263              	.LFE189:
+ 1265              		.section	.text.HAL_SYSCFG_EnableVddIO2CompensationCell,"ax",%progbits
+ 1266              		.align	1
+ 1267              		.global	HAL_SYSCFG_EnableVddIO2CompensationCell
+ 1268              		.syntax unified
+ 1269              		.thumb
+ 1270              		.thumb_func
+ 1272              	HAL_SYSCFG_EnableVddIO2CompensationCell:
+ 1273              	.LFB190:
+ 778:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 779:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 780:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief  Enable the Compensation Cell of GPIO supplied by VDDIO2
+ 781:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @rmtoll CCCSR   EN2    HAL_SYSCFG_EnableVddIO2CompensationCell
+ 782:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @note   The Vdd I/O compensation cell can be used only when the device supply
+ 783:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *         voltage ranges from 1.08 to 3.6 V
+ 784:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval None
+ 785:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 786:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** void HAL_SYSCFG_EnableVddIO2CompensationCell(void)
+ 787:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ 1274              		.loc 1 787 1 is_stmt 1 view -0
+ 1275              		.cfi_startproc
+ 1276              		@ args = 0, pretend = 0, frame = 0
+ 1277              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1278              		@ link register save eliminated.
+ 788:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   SET_BIT(SYSCFG->CCCSR, SYSCFG_CCCSR_EN2);
+ 1279              		.loc 1 788 3 view .LVU235
+ 1280 0000 024A     		ldr	r2, .L120
+ 1281 0002 D369     		ldr	r3, [r2, #28]
+ 1282 0004 43F00403 		orr	r3, r3, #4
+ 1283 0008 D361     		str	r3, [r2, #28]
+ 789:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 1284              		.loc 1 789 1 is_stmt 0 view .LVU236
+ 1285 000a 7047     		bx	lr
+ 1286              	.L121:
+ 1287              		.align	2
+ 1288              	.L120:
+ 1289 000c 00040046 		.word	1174406144
+ 1290              		.cfi_endproc
+ 1291              	.LFE190:
+ 1293              		.section	.text.HAL_SYSCFG_DisableVddCompensationCell,"ax",%progbits
+ 1294              		.align	1
+ 1295              		.global	HAL_SYSCFG_DisableVddCompensationCell
+ 1296              		.syntax unified
+ 1297              		.thumb
+ 1298              		.thumb_func
+ 1300              	HAL_SYSCFG_DisableVddCompensationCell:
+ 1301              	.LFB191:
+ 790:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 791:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** #if defined(SYSCFG_CCCSR_EN3)
+ 792:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 793:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief  Enable the Compensation Cell of HSPI IO supplied by VDD
+ 794:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @rmtoll CCCSR   EN3    HAL_SYSCFG_EnableVddHSPICompensationCell
+ 795:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval None
+ 796:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 797:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** void HAL_SYSCFG_EnableVddHSPICompensationCell(void)
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 38
+
+
+ 798:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ 799:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   SET_BIT(SYSCFG->CCCSR, SYSCFG_CCCSR_EN3);
+ 800:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 801:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** #endif /* SYSCFG_CCCSR_EN3 */
+ 802:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 803:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 804:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief  Disable the Compensation Cell of GPIO supplied by VDD
+ 805:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @rmtoll CCCSR   EN1    HAL_SYSCFG_DisableVddCompensationCell
+ 806:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @note   The Vdd compensation cell can be used only when the device supply
+ 807:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *         voltage ranges from 1.71 to 3.6 V
+ 808:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval None
+ 809:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 810:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** void HAL_SYSCFG_DisableVddCompensationCell(void)
+ 811:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ 1302              		.loc 1 811 1 is_stmt 1 view -0
+ 1303              		.cfi_startproc
+ 1304              		@ args = 0, pretend = 0, frame = 0
+ 1305              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1306              		@ link register save eliminated.
+ 812:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   CLEAR_BIT(SYSCFG->CCCSR, SYSCFG_CCCSR_EN1);
+ 1307              		.loc 1 812 3 view .LVU238
+ 1308 0000 024A     		ldr	r2, .L123
+ 1309 0002 D369     		ldr	r3, [r2, #28]
+ 1310 0004 23F00103 		bic	r3, r3, #1
+ 1311 0008 D361     		str	r3, [r2, #28]
+ 813:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 1312              		.loc 1 813 1 is_stmt 0 view .LVU239
+ 1313 000a 7047     		bx	lr
+ 1314              	.L124:
+ 1315              		.align	2
+ 1316              	.L123:
+ 1317 000c 00040046 		.word	1174406144
+ 1318              		.cfi_endproc
+ 1319              	.LFE191:
+ 1321              		.section	.text.HAL_SYSCFG_DisableVddIO2CompensationCell,"ax",%progbits
+ 1322              		.align	1
+ 1323              		.global	HAL_SYSCFG_DisableVddIO2CompensationCell
+ 1324              		.syntax unified
+ 1325              		.thumb
+ 1326              		.thumb_func
+ 1328              	HAL_SYSCFG_DisableVddIO2CompensationCell:
+ 1329              	.LFB192:
+ 814:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 815:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 816:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief  Disable the Compensation Cell of GPIO supplied by VDDIO2
+ 817:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @rmtoll CCCSR   EN2    HAL_SYSCFG_DisableVddIO2CompensationCell
+ 818:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @note   The Vdd I/O compensation cell can be used only when the device supply
+ 819:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *         voltage ranges from 1.08 to 3.6 V
+ 820:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval None
+ 821:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 822:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** void HAL_SYSCFG_DisableVddIO2CompensationCell(void)
+ 823:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ 1330              		.loc 1 823 1 is_stmt 1 view -0
+ 1331              		.cfi_startproc
+ 1332              		@ args = 0, pretend = 0, frame = 0
+ 1333              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1334              		@ link register save eliminated.
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 39
+
+
+ 824:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   CLEAR_BIT(SYSCFG->CCCSR, SYSCFG_CCCSR_EN2);
+ 1335              		.loc 1 824 3 view .LVU241
+ 1336 0000 024A     		ldr	r2, .L126
+ 1337 0002 D369     		ldr	r3, [r2, #28]
+ 1338 0004 23F00403 		bic	r3, r3, #4
+ 1339 0008 D361     		str	r3, [r2, #28]
+ 825:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 1340              		.loc 1 825 1 is_stmt 0 view .LVU242
+ 1341 000a 7047     		bx	lr
+ 1342              	.L127:
+ 1343              		.align	2
+ 1344              	.L126:
+ 1345 000c 00040046 		.word	1174406144
+ 1346              		.cfi_endproc
+ 1347              	.LFE192:
+ 1349              		.section	.text.HAL_SYSCFG_Lock,"ax",%progbits
+ 1350              		.align	1
+ 1351              		.global	HAL_SYSCFG_Lock
+ 1352              		.syntax unified
+ 1353              		.thumb
+ 1354              		.thumb_func
+ 1356              	HAL_SYSCFG_Lock:
+ 1357              	.LVL40:
+ 1358              	.LFB193:
+ 826:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 827:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** #if defined(SYSCFG_CCCSR_EN3)
+ 828:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 829:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief  Disable the Compensation Cell of HSPI IO supplied by VDD
+ 830:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @rmtoll CCCSR   EN3    HAL_SYSCFG_DisableVddHSPICompensationCell
+ 831:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval None
+ 832:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 833:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** void HAL_SYSCFG_DisableVddHSPICompensationCell(void)
+ 834:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ 835:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   CLEAR_BIT(SYSCFG->CCCSR, SYSCFG_CCCSR_EN3);
+ 836:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 837:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** #endif /* SYSCFG_CCCSR_EN3 */
+ 838:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 839:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @}
+ 840:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 841:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 842:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /** @defgroup HAL_Exported_Functions_Group5 HAL SYSCFG lock management functions
+ 843:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *  @brief SYSCFG lock management functions.
+ 844:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *
+ 845:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** @verbatim
+ 846:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****  ===============================================================================
+ 847:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****                        ##### SYSCFG lock functions #####
+ 848:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****  ===============================================================================
+ 849:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 850:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** @endverbatim
+ 851:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @{
+ 852:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 853:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 854:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 855:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief  Lock the SYSCFG item(s).
+ 856:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @note   Setting lock(s) depends on privilege mode in secure/non-secure code
+ 857:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *         Lock(s) cleared only at system reset
+ 858:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @param  Item Item(s) to set lock on.
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 40
+
+
+ 859:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *         This parameter can be a combination of @ref SYSCFG_Lock_items
+ 860:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval None
+ 861:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 862:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** void HAL_SYSCFG_Lock(uint32_t Item)
+ 863:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ 1359              		.loc 1 863 1 is_stmt 1 view -0
+ 1360              		.cfi_startproc
+ 1361              		@ args = 0, pretend = 0, frame = 0
+ 1362              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1363              		@ link register save eliminated.
+ 864:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   /* Check the parameters */
+ 865:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   assert_param(IS_SYSCFG_LOCK_ITEMS(Item));
+ 1364              		.loc 1 865 3 view .LVU244
+ 866:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 867:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   /* Privilege secure/non-secure locks */
+ 868:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   SYSCFG->CNSLCKR = (0xFFFFU & Item);  /* non-secure lock item in 16 lowest bits */
+ 1365              		.loc 1 868 3 view .LVU245
+ 1366              		.loc 1 868 30 is_stmt 0 view .LVU246
+ 1367 0000 80B2     		uxth	r0, r0
+ 1368              	.LVL41:
+ 1369              		.loc 1 868 19 view .LVU247
+ 1370 0002 014B     		ldr	r3, .L129
+ 1371 0004 D860     		str	r0, [r3, #12]
+ 869:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 870:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** #if defined (__ARM_FEATURE_CMSE) && (__ARM_FEATURE_CMSE == 3U)
+ 871:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   /* Privilege secure only locks */
+ 872:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   SYSCFG->CSLCKR = ((0xFFFF0000U & Item) >> 16U);  /* Secure-only lock item in 16 highest bits */
+ 873:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** #endif /* __ARM_FEATURE_CMSE */
+ 874:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 1372              		.loc 1 874 1 view .LVU248
+ 1373 0006 7047     		bx	lr
+ 1374              	.L130:
+ 1375              		.align	2
+ 1376              	.L129:
+ 1377 0008 00040046 		.word	1174406144
+ 1378              		.cfi_endproc
+ 1379              	.LFE193:
+ 1381              		.section	.text.HAL_SYSCFG_GetLock,"ax",%progbits
+ 1382              		.align	1
+ 1383              		.global	HAL_SYSCFG_GetLock
+ 1384              		.syntax unified
+ 1385              		.thumb
+ 1386              		.thumb_func
+ 1388              	HAL_SYSCFG_GetLock:
+ 1389              	.LVL42:
+ 1390              	.LFB194:
+ 875:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 876:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** /**
+ 877:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @brief  Get the lock state of SYSCFG item.
+ 878:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @note   Getting lock(s) depends on privilege mode in secure/non-secure code
+ 879:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @param  pItem pointer to return locked items
+ 880:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *         the return value can be a combination of @ref SYSCFG_Lock_items
+ 881:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   * @retval HAL status
+ 882:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   */
+ 883:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** HAL_StatusTypeDef HAL_SYSCFG_GetLock(uint32_t *pItem)
+ 884:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** {
+ 1391              		.loc 1 884 1 is_stmt 1 view -0
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 41
+
+
+ 1392              		.cfi_startproc
+ 1393              		@ args = 0, pretend = 0, frame = 0
+ 1394              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1395              		@ link register save eliminated.
+ 885:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   uint32_t tmp_lock;
+ 1396              		.loc 1 885 3 view .LVU250
+ 886:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 887:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   /* Check null pointer */
+ 888:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   if (pItem == NULL)
+ 1397              		.loc 1 888 3 view .LVU251
+ 1398              		.loc 1 888 6 is_stmt 0 view .LVU252
+ 1399 0000 20B1     		cbz	r0, .L133
+ 889:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   {
+ 890:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****     return HAL_ERROR;
+ 891:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   }
+ 892:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 893:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   /* Get the non-secure lock state */
+ 894:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   tmp_lock = SYSCFG->CNSLCKR;
+ 1400              		.loc 1 894 3 is_stmt 1 view .LVU253
+ 1401              		.loc 1 894 12 is_stmt 0 view .LVU254
+ 1402 0002 034A     		ldr	r2, .L134
+ 1403 0004 D268     		ldr	r2, [r2, #12]
+ 1404              	.LVL43:
+ 895:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 896:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   /* Get the secure lock state in secure code */
+ 897:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** #if defined (__ARM_FEATURE_CMSE) && (__ARM_FEATURE_CMSE == 3U)
+ 898:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   tmp_lock |= (SYSCFG->CSLCKR << 16U);
+ 899:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** #endif /* __ARM_FEATURE_CMSE */
+ 900:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 901:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   /* Return overall lock status */
+ 902:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   *pItem = tmp_lock;
+ 1405              		.loc 1 902 3 is_stmt 1 view .LVU255
+ 1406              		.loc 1 902 10 is_stmt 0 view .LVU256
+ 1407 0006 0260     		str	r2, [r0]
+ 903:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** 
+ 904:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   return HAL_OK;
+ 1408              		.loc 1 904 3 is_stmt 1 view .LVU257
+ 1409              		.loc 1 904 10 is_stmt 0 view .LVU258
+ 1410 0008 0020     		movs	r0, #0
+ 1411              	.LVL44:
+ 1412              		.loc 1 904 10 view .LVU259
+ 1413 000a 7047     		bx	lr
+ 1414              	.LVL45:
+ 1415              	.L133:
+ 890:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c ****   }
+ 1416              		.loc 1 890 12 view .LVU260
+ 1417 000c 0120     		movs	r0, #1
+ 1418              	.LVL46:
+ 905:Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal.c **** }
+ 1419              		.loc 1 905 1 view .LVU261
+ 1420 000e 7047     		bx	lr
+ 1421              	.L135:
+ 1422              		.align	2
+ 1423              	.L134:
+ 1424 0010 00040046 		.word	1174406144
+ 1425              		.cfi_endproc
+ 1426              	.LFE194:
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 42
+
+
+ 1428              		.global	uwTickFreq
+ 1429              		.global	uwTickPrio
+ 1430              		.global	uwTick
+ 1431              		.section	.bss.uwTick,"aw",%nobits
+ 1432              		.align	2
+ 1433              		.set	.LANCHOR2,. + 0
+ 1436              	uwTick:
+ 1437 0000 00000000 		.space	4
+ 1438              		.section	.data.uwTickFreq,"aw"
+ 1439              		.set	.LANCHOR0,. + 0
+ 1442              	uwTickFreq:
+ 1443 0000 01       		.byte	1
+ 1444              		.section	.data.uwTickPrio,"aw"
+ 1445              		.align	2
+ 1446              		.set	.LANCHOR1,. + 0
+ 1449              	uwTickPrio:
+ 1450 0000 10000000 		.word	16
+ 1451              		.text
+ 1452              	.Letext0:
+ 1453              		.file 2 "/opt/homebrew/Cellar/arm-none-eabi-gcc/10.3-2021.10/gcc/arm-none-eabi/include/machine/_de
+ 1454              		.file 3 "/opt/homebrew/Cellar/arm-none-eabi-gcc/10.3-2021.10/gcc/arm-none-eabi/include/sys/_stdint
+ 1455              		.file 4 "Drivers/CMSIS/Include/core_cm33.h"
+ 1456              		.file 5 "Drivers/CMSIS/Device/ST/STM32U5xx/Include/system_stm32u5xx.h"
+ 1457              		.file 6 "Drivers/CMSIS/Device/ST/STM32U5xx/Include/stm32u585xx.h"
+ 1458              		.file 7 "Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_hal_def.h"
+ 1459              		.file 8 "Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_hal.h"
+ 1460              		.file 9 "Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_hal_cortex.h"
+ 1461              		.file 10 "Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_hal_rcc.h"
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 43
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 stm32u5xx_hal.c
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:21     .text.HAL_MspInit:0000000000000000 $t
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:27     .text.HAL_MspInit:0000000000000000 HAL_MspInit
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:41     .text.HAL_MspDeInit:0000000000000000 $t
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:47     .text.HAL_MspDeInit:0000000000000000 HAL_MspDeInit
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:60     .text.HAL_DeInit:0000000000000000 $t
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:66     .text.HAL_DeInit:0000000000000000 HAL_DeInit
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:132    .text.HAL_DeInit:000000000000003c $d
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:142    .text.HAL_InitTick:0000000000000000 $t
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:148    .text.HAL_InitTick:0000000000000000 HAL_InitTick
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:287    .text.HAL_InitTick:00000000000000a0 $d
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:294    .text.HAL_Init:0000000000000000 $t
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:300    .text.HAL_Init:0000000000000000 HAL_Init
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:365    .text.HAL_Init:0000000000000044 $d
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:373    .text.HAL_IncTick:0000000000000000 $t
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:379    .text.HAL_IncTick:0000000000000000 HAL_IncTick
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:400    .text.HAL_IncTick:0000000000000010 $d
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:406    .text.HAL_GetTick:0000000000000000 $t
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:412    .text.HAL_GetTick:0000000000000000 HAL_GetTick
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:428    .text.HAL_GetTick:0000000000000008 $d
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:433    .text.HAL_GetTickPrio:0000000000000000 $t
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:439    .text.HAL_GetTickPrio:0000000000000000 HAL_GetTickPrio
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:454    .text.HAL_GetTickPrio:0000000000000008 $d
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:459    .text.HAL_SetTickFreq:0000000000000000 $t
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:465    .text.HAL_SetTickFreq:0000000000000000 HAL_SetTickFreq
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:522    .text.HAL_SetTickFreq:0000000000000024 $d
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:528    .text.HAL_GetTickFreq:0000000000000000 $t
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:534    .text.HAL_GetTickFreq:0000000000000000 HAL_GetTickFreq
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:549    .text.HAL_GetTickFreq:0000000000000008 $d
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:554    .text.HAL_Delay:0000000000000000 $t
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:560    .text.HAL_Delay:0000000000000000 HAL_Delay
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:613    .text.HAL_Delay:0000000000000024 $d
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:618    .text.HAL_SuspendTick:0000000000000000 $t
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:624    .text.HAL_SuspendTick:0000000000000000 HAL_SuspendTick
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:643    .text.HAL_ResumeTick:0000000000000000 $t
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:649    .text.HAL_ResumeTick:0000000000000000 HAL_ResumeTick
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:668    .text.HAL_GetHalVersion:0000000000000000 $t
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:674    .text.HAL_GetHalVersion:0000000000000000 HAL_GetHalVersion
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:688    .text.HAL_GetHalVersion:0000000000000004 $d
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:693    .text.HAL_GetREVID:0000000000000000 $t
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:699    .text.HAL_GetREVID:0000000000000000 HAL_GetREVID
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:716    .text.HAL_GetREVID:0000000000000008 $d
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:721    .text.HAL_GetDEVID:0000000000000000 $t
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:727    .text.HAL_GetDEVID:0000000000000000 HAL_GetDEVID
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:744    .text.HAL_GetDEVID:000000000000000c $d
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:749    .text.HAL_GetUIDw0:0000000000000000 $t
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:755    .text.HAL_GetUIDw0:0000000000000000 HAL_GetUIDw0
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:770    .text.HAL_GetUIDw0:0000000000000008 $d
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:775    .text.HAL_GetUIDw1:0000000000000000 $t
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:781    .text.HAL_GetUIDw1:0000000000000000 HAL_GetUIDw1
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:796    .text.HAL_GetUIDw1:0000000000000008 $d
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:801    .text.HAL_GetUIDw2:0000000000000000 $t
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:807    .text.HAL_GetUIDw2:0000000000000000 HAL_GetUIDw2
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:822    .text.HAL_GetUIDw2:0000000000000008 $d
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:827    .text.HAL_DBGMCU_EnableDBGStopMode:0000000000000000 $t
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:833    .text.HAL_DBGMCU_EnableDBGStopMode:0000000000000000 HAL_DBGMCU_EnableDBGStopMode
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 44
+
+
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:850    .text.HAL_DBGMCU_EnableDBGStopMode:000000000000000c $d
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:855    .text.HAL_DBGMCU_DisableDBGStopMode:0000000000000000 $t
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:861    .text.HAL_DBGMCU_DisableDBGStopMode:0000000000000000 HAL_DBGMCU_DisableDBGStopMode
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:878    .text.HAL_DBGMCU_DisableDBGStopMode:000000000000000c $d
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:883    .text.HAL_DBGMCU_EnableDBGStandbyMode:0000000000000000 $t
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:889    .text.HAL_DBGMCU_EnableDBGStandbyMode:0000000000000000 HAL_DBGMCU_EnableDBGStandbyMode
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:906    .text.HAL_DBGMCU_EnableDBGStandbyMode:000000000000000c $d
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:911    .text.HAL_DBGMCU_DisableDBGStandbyMode:0000000000000000 $t
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:917    .text.HAL_DBGMCU_DisableDBGStandbyMode:0000000000000000 HAL_DBGMCU_DisableDBGStandbyMode
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:934    .text.HAL_DBGMCU_DisableDBGStandbyMode:000000000000000c $d
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:939    .text.HAL_SYSCFG_VREFBUF_VoltageScalingConfig:0000000000000000 $t
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:945    .text.HAL_SYSCFG_VREFBUF_VoltageScalingConfig:0000000000000000 HAL_SYSCFG_VREFBUF_VoltageScalingConfig
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:965    .text.HAL_SYSCFG_VREFBUF_VoltageScalingConfig:0000000000000010 $d
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:970    .text.HAL_SYSCFG_VREFBUF_HighImpedanceConfig:0000000000000000 $t
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:976    .text.HAL_SYSCFG_VREFBUF_HighImpedanceConfig:0000000000000000 HAL_SYSCFG_VREFBUF_HighImpedanceConfig
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:996    .text.HAL_SYSCFG_VREFBUF_HighImpedanceConfig:0000000000000010 $d
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1001   .text.HAL_SYSCFG_VREFBUF_TrimmingConfig:0000000000000000 $t
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1007   .text.HAL_SYSCFG_VREFBUF_TrimmingConfig:0000000000000000 HAL_SYSCFG_VREFBUF_TrimmingConfig
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1027   .text.HAL_SYSCFG_VREFBUF_TrimmingConfig:0000000000000010 $d
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1032   .text.HAL_SYSCFG_EnableVREFBUF:0000000000000000 $t
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1038   .text.HAL_SYSCFG_EnableVREFBUF:0000000000000000 HAL_SYSCFG_EnableVREFBUF
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1093   .text.HAL_SYSCFG_EnableVREFBUF:0000000000000030 $d
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1098   .text.HAL_SYSCFG_DisableVREFBUF:0000000000000000 $t
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1104   .text.HAL_SYSCFG_DisableVREFBUF:0000000000000000 HAL_SYSCFG_DisableVREFBUF
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1121   .text.HAL_SYSCFG_DisableVREFBUF:000000000000000c $d
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1126   .text.HAL_SYSCFG_EnableIOAnalogBooster:0000000000000000 $t
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1132   .text.HAL_SYSCFG_EnableIOAnalogBooster:0000000000000000 HAL_SYSCFG_EnableIOAnalogBooster
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1149   .text.HAL_SYSCFG_EnableIOAnalogBooster:000000000000000c $d
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1154   .text.HAL_SYSCFG_DisableIOAnalogBooster:0000000000000000 $t
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1160   .text.HAL_SYSCFG_DisableIOAnalogBooster:0000000000000000 HAL_SYSCFG_DisableIOAnalogBooster
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1177   .text.HAL_SYSCFG_DisableIOAnalogBooster:000000000000000c $d
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1182   .text.HAL_SYSCFG_EnableIOAnalogVoltageSelection:0000000000000000 $t
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1188   .text.HAL_SYSCFG_EnableIOAnalogVoltageSelection:0000000000000000 HAL_SYSCFG_EnableIOAnalogVoltageSelection
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1205   .text.HAL_SYSCFG_EnableIOAnalogVoltageSelection:000000000000000c $d
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1210   .text.HAL_SYSCFG_DisableIOAnalogVoltageSelection:0000000000000000 $t
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1216   .text.HAL_SYSCFG_DisableIOAnalogVoltageSelection:0000000000000000 HAL_SYSCFG_DisableIOAnalogVoltageSelection
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1233   .text.HAL_SYSCFG_DisableIOAnalogVoltageSelection:000000000000000c $d
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1238   .text.HAL_SYSCFG_EnableVddCompensationCell:0000000000000000 $t
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1244   .text.HAL_SYSCFG_EnableVddCompensationCell:0000000000000000 HAL_SYSCFG_EnableVddCompensationCell
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1261   .text.HAL_SYSCFG_EnableVddCompensationCell:000000000000000c $d
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1266   .text.HAL_SYSCFG_EnableVddIO2CompensationCell:0000000000000000 $t
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1272   .text.HAL_SYSCFG_EnableVddIO2CompensationCell:0000000000000000 HAL_SYSCFG_EnableVddIO2CompensationCell
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1289   .text.HAL_SYSCFG_EnableVddIO2CompensationCell:000000000000000c $d
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1294   .text.HAL_SYSCFG_DisableVddCompensationCell:0000000000000000 $t
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1300   .text.HAL_SYSCFG_DisableVddCompensationCell:0000000000000000 HAL_SYSCFG_DisableVddCompensationCell
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1317   .text.HAL_SYSCFG_DisableVddCompensationCell:000000000000000c $d
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1322   .text.HAL_SYSCFG_DisableVddIO2CompensationCell:0000000000000000 $t
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1328   .text.HAL_SYSCFG_DisableVddIO2CompensationCell:0000000000000000 HAL_SYSCFG_DisableVddIO2CompensationCell
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1345   .text.HAL_SYSCFG_DisableVddIO2CompensationCell:000000000000000c $d
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1350   .text.HAL_SYSCFG_Lock:0000000000000000 $t
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1356   .text.HAL_SYSCFG_Lock:0000000000000000 HAL_SYSCFG_Lock
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1377   .text.HAL_SYSCFG_Lock:0000000000000008 $d
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1382   .text.HAL_SYSCFG_GetLock:0000000000000000 $t
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1388   .text.HAL_SYSCFG_GetLock:0000000000000000 HAL_SYSCFG_GetLock
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1424   .text.HAL_SYSCFG_GetLock:0000000000000010 $d
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1442   .data.uwTickFreq:0000000000000000 uwTickFreq
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1449   .data.uwTickPrio:0000000000000000 uwTickPrio
+ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s 			page 45
+
+
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1436   .bss.uwTick:0000000000000000 uwTick
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1432   .bss.uwTick:0000000000000000 $d
+/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccllYtJQ.s:1445   .data.uwTickPrio:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+HAL_SYSTICK_Config
+HAL_SYSTICK_GetCLKSourceConfig
+HAL_NVIC_SetPriority
+SystemCoreClock
+HAL_NVIC_SetPriorityGrouping
+HAL_RCC_GetSysClockFreq
+HAL_SYSTICK_CLKSourceConfig
+AHBPrescTable

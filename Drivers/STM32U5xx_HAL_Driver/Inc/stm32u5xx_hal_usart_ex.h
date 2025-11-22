@@ -72,7 +72,7 @@ typedef struct
   * @{
   */
 #define USART_WORDLENGTH_7B                  (USART_CR1_M1)   /*!< 7-bit long USART frame */
-#define USART_WORDLENGTH_8B                  (0x00000000U)              /*!< 8-bit long USART frame */
+#define USART_WORDLENGTH_8B                  (0x00000000U)    /*!< 8-bit long USART frame */
 #define USART_WORDLENGTH_9B                  (USART_CR1_M0)   /*!< 9-bit long USART frame */
 /**
   * @}
@@ -365,8 +365,8 @@ HAL_StatusTypeDef HAL_USARTEx_DisableFifoMode(USART_HandleTypeDef *husart);
 HAL_StatusTypeDef HAL_USARTEx_SetTxFifoThreshold(USART_HandleTypeDef *husart, uint32_t Threshold);
 HAL_StatusTypeDef HAL_USARTEx_SetRxFifoThreshold(USART_HandleTypeDef *husart, uint32_t Threshold);
 HAL_StatusTypeDef HAL_USARTEx_SetConfigAutonomousMode(USART_HandleTypeDef *husart,
-                                                      USART_AutonomousModeConfTypeDef *sConfig);
-HAL_StatusTypeDef HAL_USARTEx_GetConfigAutonomousMode(USART_HandleTypeDef *husart,
+                                                      const USART_AutonomousModeConfTypeDef *sConfig);
+HAL_StatusTypeDef HAL_USARTEx_GetConfigAutonomousMode(const USART_HandleTypeDef *husart,
                                                       USART_AutonomousModeConfTypeDef *sConfig);
 HAL_StatusTypeDef HAL_USARTEx_ClearConfigAutonomousMode(USART_HandleTypeDef *husart);
 
