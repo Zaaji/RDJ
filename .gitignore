@@ -1,0 +1,34 @@
+# Misc
+**/.DS_Store
+**/__pycache__/
+**/.vscode/
+**/.pytest_cache/
+**/*.log
+
+# Python and builds
+**/.Python
+**/build/
+**/_build/
+**/dist/
+**/eggs/
+**/*.egg
+**/*.egg-info/
+
+# Environments
+**/.env
+**/.venv
+**/venv/
+**/env/
+
+# C Files
+**/*.o
+**/*.d
+**/*.elf
+**/*.hex
+**/*.bin
+**/*.map
+**/*.obj
+**/*.out
+**/*.exe
+**/a.out
+
