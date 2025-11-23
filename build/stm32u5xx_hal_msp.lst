@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccxpqNab.s 			page 1
+ARM GAS  /tmp/ccsowktm.s 			page 1
 
 
    1              		.cpu cortex-m33
@@ -20,15 +20,15 @@ ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccxpqNab.s 			page 1
   17              		.text
   18              	.Ltext0:
   19              		.cfi_sections	.debug_frame
-  20              		.section	.text.HAL_MspInit,"ax",%progbits
-  21              		.align	1
-  22              		.global	HAL_MspInit
-  23              		.syntax unified
-  24              		.thumb
-  25              		.thumb_func
-  27              	HAL_MspInit:
-  28              	.LFB157:
-  29              		.file 1 "Core/Src/stm32u5xx_hal_msp.c"
+  20              		.file 1 "Core/Src/stm32u5xx_hal_msp.c"
+  21              		.section	.text.HAL_MspInit,"ax",%progbits
+  22              		.align	1
+  23              		.global	HAL_MspInit
+  24              		.syntax unified
+  25              		.thumb
+  26              		.thumb_func
+  28              	HAL_MspInit:
+  29              	.LFB157:
    1:Core/Src/stm32u5xx_hal_msp.c **** /* USER CODE BEGIN Header */
    2:Core/Src/stm32u5xx_hal_msp.c **** /**
    3:Core/Src/stm32u5xx_hal_msp.c ****   ******************************************************************************
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccxpqNab.s 			page 1
   27:Core/Src/stm32u5xx_hal_msp.c **** /* Private typedef -----------------------------------------------------------*/
   28:Core/Src/stm32u5xx_hal_msp.c **** /* USER CODE BEGIN TD */
   29:Core/Src/stm32u5xx_hal_msp.c **** 
-ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccxpqNab.s 			page 2
+ARM GAS  /tmp/ccsowktm.s 			page 2
 
 
   30:Core/Src/stm32u5xx_hal_msp.c **** /* USER CODE END TD */
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccxpqNab.s 			page 1
   43 0004 D3F89420 		ldr	r2, [r3, #148]
   44 0008 42F00402 		orr	r2, r2, #4
   45 000c C3F89420 		str	r2, [r3, #148]
-ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccxpqNab.s 			page 3
+ARM GAS  /tmp/ccsowktm.s 			page 3
 
 
   46              		.loc 1 70 3 view .LVU4
@@ -150,16 +150,15 @@ ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccxpqNab.s 			page 1
   65              	.LFE157:
   67              		.text
   68              	.Letext0:
-  69              		.file 2 "/opt/homebrew/Cellar/arm-none-eabi-gcc/10.3-2021.10/gcc/arm-none-eabi/include/machine/_de
-  70              		.file 3 "/opt/homebrew/Cellar/arm-none-eabi-gcc/10.3-2021.10/gcc/arm-none-eabi/include/sys/_stdint
-  71              		.file 4 "Drivers/CMSIS/Device/ST/STM32U5xx/Include/stm32u585xx.h"
-ARM GAS  /var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccxpqNab.s 			page 4
+  69              		.file 2 "Drivers/CMSIS/Device/ST/STM32U5xx/Include/stm32u585xx.h"
+  70              		.file 3 "/usr/lib/gcc/arm-none-eabi/13.2.1/include/stdint.h"
+ARM GAS  /tmp/ccsowktm.s 			page 4
 
 
 DEFINED SYMBOLS
-                            *ABS*:0000000000000000 stm32u5xx_hal_msp.c
-/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccxpqNab.s:21     .text.HAL_MspInit:0000000000000000 $t
-/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccxpqNab.s:27     .text.HAL_MspInit:0000000000000000 HAL_MspInit
-/var/folders/j8/bx6g0dyx2gg_pdn7l_y1sb9c0000gn/T//ccxpqNab.s:63     .text.HAL_MspInit:0000000000000020 $d
+                            *ABS*:00000000 stm32u5xx_hal_msp.c
+     /tmp/ccsowktm.s:22     .text.HAL_MspInit:00000000 $t
+     /tmp/ccsowktm.s:28     .text.HAL_MspInit:00000000 HAL_MspInit
+     /tmp/ccsowktm.s:63     .text.HAL_MspInit:00000020 $d
 
 NO UNDEFINED SYMBOLS
