@@ -1,10 +1,11 @@
-# macOS specific files
+# Misc
 **/.DS_Store
-
-# Byte-compiled / optimized / DLL files
 **/__pycache__/
+**/.vscode/
+**/.pytest_cache/
+**/*.log
 
-# Distribution / packaging
+# Python and builds
 **/.Python
 **/build/
 **/_build/
@@ -19,14 +20,7 @@
 **/venv/
 **/env/
 
-**/.vscode/
-
-**/.pytest_cache/
-
-# Logs
-**/*.log
-
-# C++ specific files
+# C Files
 **/*.o
 **/*.d
 **/*.elf
@@ -34,8 +28,6 @@
 **/*.bin
 **/*.map
 **/*.obj
-
-# Executables
 **/*.out
 **/*.exe
 **/a.out
