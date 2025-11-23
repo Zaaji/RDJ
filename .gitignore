@@ -1,0 +1,42 @@
+# macOS specific files
+**/.DS_Store
+
+# Byte-compiled / optimized / DLL files
+**/__pycache__/
+
+# Distribution / packaging
+**/.Python
+**/build/
+**/_build/
+**/dist/
+**/eggs/
+**/*.egg
+**/*.egg-info/
+
+# Environments
+**/.env
+**/.venv
+**/venv/
+**/env/
+
+**/.vscode/
+
+**/.pytest_cache/
+
+# Logs
+**/*.log
+
+# C++ specific files
+**/*.o
+**/*.d
+**/*.elf
+**/*.hex
+**/*.bin
+**/*.map
+**/*.obj
+
+# Executables
+**/*.out
+**/*.exe
+**/a.out
+
