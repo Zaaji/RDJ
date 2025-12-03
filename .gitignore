@@ -8,6 +8,7 @@
 # Python and builds
 **/.Python
 **/build/
+build/
 **/_build/
 **/dist/
 **/eggs/
