@@ -1,11 +1,11 @@
-export module hal.gpio;
+export module hal_gpio;
 
-import hal.status;
+import hal_status;
 
 export class Gpio {
     public:
     ~Gpio() = default;
-    virutal HalStatus write() = 0;
+    virtual HalStatus write() = 0;
     virtual HalStatus read() = 0;
-    virutal HalStatus toggle() = 0;
+    virtual HalStatus toggle() = 0;
 };
