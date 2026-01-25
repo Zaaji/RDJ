@@ -1,0 +1,5 @@
+CompileFlags:
+  Compiler: "/opt/homebrew/opt/llvm/bin/clang"
+  Add:
+    - -std=c++20
+  
