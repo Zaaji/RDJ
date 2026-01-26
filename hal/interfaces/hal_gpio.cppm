@@ -17,9 +17,11 @@ export struct GpioPin {
 };
 
 export class Gpio {
+    private:
+        GpioPin pin;
     public:
-    ~Gpio() = default;
-    virtual HalStatus write(GpioState state) = 0;
-    virtual GpioState read() = 0;
-    virtual HalStatus toggle() = 0;
+        Gpio(GpioPin pin);
+        HalStatus write(GpioState state);
+        GpioState read() const;
+        HalStatus toggle();
 };
